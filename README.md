@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# DataLab drink ordering system (frontend)
+![NTHU DataLab logo](./public/datalab-logo-plain.png)
+The front-end website for drink ordering system of [NTHU DataLab](http://www.cs.nthu.edu.tw/~shwu/).
+The back-end api of this system belongs to [this repo](https://github.com/pin-yu/datalab-drinks-backend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
