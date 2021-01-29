@@ -12,6 +12,8 @@ import AllDrinks from "./components/AllDrinks";
 import NavBar from "./components/NavBar";
 import { getMenu } from "./services/api";
 
+export const AppContext = React.createContext();
+
 function App() {
   const [drinkData, setDrinkData] = useState(null);
 
@@ -24,7 +26,12 @@ function App() {
       return () => {}
   }, [])
 
+  const appContext = {
+    drinkData
+  };
+
   return (
+    <AppContext.Provider value={appContext}>
     <div className="App">
       <Router>
         <NavBar drinkData={drinkData}/>
@@ -47,6 +54,7 @@ function App() {
         </Suspense>
       </Router>
     </div>
+    </AppContext.Provider>
   );
 }
 
