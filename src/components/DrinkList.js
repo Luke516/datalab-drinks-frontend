@@ -6,9 +6,11 @@ export default function DrinkList(props) {
 
     return(
         <div className="row">
-            {props.data.map((item, key) => {
-                return (<DrinkCell key={key} data={item}/>)
-            })}
+            <ul className="list-group list-group-flush">
+                {props.data.map((item, key) => {
+                    return (<DrinkCell key={key} data={item}/>)
+                })}
+            </ul>
         </div>
     )
 }
