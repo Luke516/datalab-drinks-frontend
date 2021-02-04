@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../App";
+import { serverBaseURL, submitOrder } from "../services/api";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 import './DrinkCell.css';
 
@@ -8,6 +9,7 @@ export default function OrderModal(props) {
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const[flavor, setFlavor] = useState("");
+    const[name, setName] = useState("QWQ");
 
     const appContext = useContext(AppContext);
     const sugarLevels = appContext.drinkData.sugar;
@@ -19,6 +21,18 @@ export default function OrderModal(props) {
 
     if(!props.data.hot){
         iceLevels = iceLevels.filter((e) => {return e["id"] !== "1"});
+    }
+
+    const submit = () => {
+        submitOrder({
+            name,
+            id: props.data.id,
+            ice,
+            sugar
+        })
+        .then((jsonData)=>{
+            console.log(jsonData);
+        });
     }
 
     return(
@@ -47,13 +61,13 @@ export default function OrderModal(props) {
                                 </small></span>
                             }
                             <div>
-                                <SingleOptionButtonGroup title="ice" options={iceLevels.map(iceLevel => iceLevel["tag"])} onChange={setIce} />
+                                <SingleOptionButtonGroup title="ice" options={iceLevels.map(iceLevel => iceLevel["tag"])} values={iceLevels.map(iceLevel => iceLevel["id"])} onChange={setIce} />
                             </div>
                         </div>
                         <div className="my-2">
                             <span>甜度</span>
                             <div className="select-ice">
-                                <SingleOptionButtonGroup title="sugar" options={sugarLevels.map(sugarLevel => sugarLevel["tag"])} onChange={setSugar} />
+                                <SingleOptionButtonGroup title="sugar" options={sugarLevels.map(sugarLevel => sugarLevel["tag"])} values={sugarLevels.map(sugarLevel => sugarLevel["id"])} onChange={setSugar} />
                             </div>
                         </div>
                         {props.data.flavor &&
@@ -70,8 +84,7 @@ export default function OrderModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        {/* <button type="button" className="btn btn-secondary" onClick={()=>{props.setShowModal(false);}}>取消</button> */}
-                        <button type="button" className="btn btn-primary">送出訂單</button>
+                        <button type="button" className="btn btn-primary" onClick={submit}>送出訂單</button>
                     </div>
                     </div>
                 </div>
