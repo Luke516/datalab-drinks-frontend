@@ -11,6 +11,7 @@ import {
 import AllDrinks from "./components/AllDrinks";
 import NavBar from "./components/NavBar";
 import { getMenu } from "./services/api";
+import OrderList from "./components/OrderList";
 
 export const AppContext = React.createContext();
 
@@ -21,7 +22,8 @@ function App() {
       getMenu()
       .then(items => {
           console.log(items);
-          setDrinkData(items);
+          console.log(items.payload);
+          setDrinkData(items.payload);
       })
       return () => {}
   }, [])
@@ -49,6 +51,9 @@ function App() {
             </Route>
             <Route path="/drinks/:series">
                 <AllDrinks drinkData={drinkData}/>
+            </Route>
+            <Route exact path="/orders">
+              <OrderList/>
             </Route>
           </Switch>
         </Suspense>

@@ -1,0 +1,37 @@
+#datalab-drink-logo-background {
+    clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+    background-color: blueviolet;
+    background-size: cover;
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+}
+
+#datalab-drink-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-right: 1.5rem;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.nav {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: rgba(255,255,255,0.4);
+    z-index: 1000;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    transform: skew(-26.5deg); /* Equal to skewX(10deg) */
+    background-color: pink;
+    border-radius: 0;
+}
