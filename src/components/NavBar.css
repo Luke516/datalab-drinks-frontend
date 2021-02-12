@@ -1,19 +1,24 @@
 #datalab-drink-logo-background {
-    clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+    /* clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%); */
+    transform: skew(-26.5deg);
     background-color: blueviolet;
     background-size: cover;
     margin-top: -0.5rem;
-    margin-left: -0.5rem;
+    margin-bottom: -0.5rem;
+    margin-left: -2.5rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-right: 0.5rem;
 }
 
 #datalab-drink-logo {
+    transform: skew(26.5deg);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    padding-right: 1.5rem;
-    background-color: rgba(255,255,255,0.3);
+    padding-right: 0.5rem;
+    padding-left: 2.5rem;
 }
 
 .nav {
@@ -25,13 +30,21 @@
     z-index: 1000;
 }
 
-.nav-link {
+.nav-link-background {
+    transform: skew(-26.5deg);
     display: flex;
     align-items: center;
+    margin-left: 0.25rem;
+    border: 0.25rem transparent solid;
 }
 
-.nav-link:hover {
-    transform: skew(-26.5deg); /* Equal to skewX(10deg) */
-    background-color: pink;
-    border-radius: 0;
+.nav-link-background:hover {
+    border: 0.25rem pink solid;
+}
+
+
+.nav-link {
+    transform: skew(26.5deg);
+    display: flex;
+    align-items: center;
 }

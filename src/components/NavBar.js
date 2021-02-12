@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './NavBar.css'
-import dataLabLogo from '../images/datalab-logo-plain.png'
+import dataLabLogo from '../images/datalab-logo-white.png'
 import logoBgImg from '../images/datalab-bg.jpg';
 
 export default function NavBar(props) {
@@ -12,21 +12,27 @@ export default function NavBar(props) {
                     <img src={dataLabLogo} style={{height: "2.5rem"}}></img>
                 </div>
             </div>
-            <Link key={"all"} className="nav-link" to={`/drinks/all`}>
-                全部飲料
-            </Link>
+            <div className="nav-link-background">
+                <Link key={"all"} className="nav-link" to={`/drinks/all`}>
+                    全部飲料
+                </Link>
+            </div>
             {props.drinkData && props.drinkData.menu &&
                 props.drinkData.menu.map((series, key) => {
                     return (
-                        <Link key={key} className="nav-link" to={`/drinks/${key}`}>
-                            {series.series}
-                        </Link>
+                        <div className="nav-link-background">
+                            <Link key={key} className="nav-link" to={`/drinks/${key}`}>
+                                {series.series}
+                            </Link>
+                        </div>
                     )
                 })
             }
-            <Link key={"orders"} className="nav-link" to={`/orders`}>
-                訂購紀錄
-            </Link>
+            <div className="nav-link-background">
+                <Link key={"orders"} className="nav-link" to={`/orders`}>
+                    訂購紀錄
+                </Link>
+            </div>
         </div>
     )
 }
