@@ -39,7 +39,7 @@
 }
 
 .nav-link-background:hover {
-    border: 0.25rem pink solid;
+    border: 0.25rem rgba(70, 57, 168, 0.4) solid;
 }
 
 
@@ -47,4 +47,14 @@
     transform: skew(26.5deg);
     display: flex;
     align-items: center;
+    color: inherit;
+}
+
+.nav-link-background.selected {
+    background-color: rgba(70, 57, 168, 1.0);
+    color: white;
+}
+
+.selected > a.nav-link:hover {
+    color: lightgray;
 }

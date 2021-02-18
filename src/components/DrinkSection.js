@@ -6,7 +6,7 @@ import { getMenu } from "../services/api";
 export default function DrinkSection(props) {
 
     return(
-        <div className="my-3">
+        <div className="my-4">
             <h1>{props.series.series}</h1>
             <div className="row">
                 <DrinkList data={props.series.items}/>

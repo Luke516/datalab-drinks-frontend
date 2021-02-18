@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export default function OrderCell(props) {
     const [showModal, setShowModal] = useState(false);
     return(
-        // <span>QWQ</span>
         <li className="list-group-item d-flex flex-row justify-content-between" onClick={()=>{if(!showModal)setShowModal(true)}}>
             <span>{props.data.item}</span>
             <span>{props.data.order_by}</span>

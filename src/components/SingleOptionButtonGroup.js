@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function SingleOptionButtonGroup(props) {
 
     return(
-        <div className="btn-group w-100 mt-2" role="group" aria-label="Basic radio toggle button group">
+        <div className="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
             {props.options.map((option, key)=>{
                 return(
                     <React.Fragment key={key}>
