@@ -8,7 +8,6 @@ export function getMenu() {
 }
 
 export function submitOrder(order) {
-  // const url = serverBaseURL + `/v1/orders?order_by=${order.name}&item_id=${order.id}&sugar=${order.sugar}&ice=${order.ice}`;
   const url = serverBaseURL + `/orders/`;
   return fetch(
     url,{
@@ -19,11 +18,17 @@ export function submitOrder(order) {
       body: JSON.stringify({
         order_by: order.name,
         item_id: order.id,
-        sugar: parseInt(order.sugar),
-        ice: parseInt(order.ice)
+        size: "medium",
+        sugar_id: parseInt(order.sugar),
+        ice_id: parseInt(order.ice)
       })
     })
-    .then(data => data.json())
+    .then((response) => {
+      if (response.ok) {
+        alert("訂購成功");
+      }
+      return response.json()}
+    )
 }
 
 export function getOrders() {

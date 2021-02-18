@@ -10,8 +10,8 @@ export default function OrderList(props) {
         getOrders()
         .then(items => {
             console.log(items);
-            if(items && items.hasOwnProperty("detail_orders")){
-                setOrderData(items.detail_orders);
+            if(items){
+                setOrderData(items.payload.week_orders);
             }else{
                 setOrderData([]);
             }

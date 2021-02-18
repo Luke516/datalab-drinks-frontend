@@ -21,7 +21,7 @@ export default function AllDrinks(props) {
                         <div key={key} className={"tab-panefadeactiveshow"} id={"drink" + key} role="tabpanel" aria-labelledby={`drink-${key}-tab`}>
                             <DrinkSection series={series} />
                         </div>:
-                        <></>
+                        <div key={key}></div>
                     )
                 })
             }
