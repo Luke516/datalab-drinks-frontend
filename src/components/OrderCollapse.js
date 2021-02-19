@@ -14,11 +14,11 @@ export default function OrderCollpase(props) {
     let iceLevels = appContext.drinkData.ice;
 
     if(!props.data.cold){
-        iceLevels = iceLevels.filter((e) => {return e["id"] !== "2" && e["id"] !== "3"});
+        iceLevels = iceLevels.filter((e) => {return e["ice_id"] !== 2 && e["id"] !== 3});
     }
 
     if(!props.data.hot){
-        iceLevels = iceLevels.filter((e) => {return e["id"] !== "1"});
+        iceLevels = iceLevels.filter((e) => {return e["ice_id"] !== 1});
     }
 
     const submit = () => {
@@ -51,13 +51,13 @@ export default function OrderCollpase(props) {
                         </div>
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
                             <span>溫度</span>
-                            {(!props.data.cold || !props.data.hot) &&
+                            {/* {(!props.data.cold || !props.data.hot) &&
                                 <span style={{color: "gray"}}><small>
                                     *本飲料不提供
                                     {!props.data.cold && "冷飲"}
                                     {!props.data.hot && "熱飲"}
                                 </small></span>
-                            }
+                            } */}
                             <div className="select-hot ms-2 flex-grow-1">
                                 <SingleOptionButtonGroup id={props.data.item} title="ice" options={iceLevels.map(iceLevel => iceLevel["ice_tag"])} values={iceLevels.map(iceLevel => iceLevel["ice_id"])} onChange={setIce} />
                             </div>
