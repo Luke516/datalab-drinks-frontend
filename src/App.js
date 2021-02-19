@@ -17,7 +17,7 @@ import OrderList from "./components/OrderList";
 export const AppContext = React.createContext();
 
 function App() {
-  const [drinkData, setDrinkData] = useState(null);
+  const [drinkData, setDrinkData] = useState([]);
 
   useEffect(() => {
       getMenu()
