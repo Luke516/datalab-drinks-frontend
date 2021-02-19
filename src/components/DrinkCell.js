@@ -11,11 +11,11 @@ export default function DrinkCell(props) {
             <div className="d-flex flex-row justify-content-between">
                 {props.data.item}
                 <div className="d-flex">
-                    <div className="mx-1" style={{visibility: props.data.medium_price === 0? "hidden": "visible"}}>
+                    <div className="mx-1 drink-price" style={{visibility: props.data.medium_price === 0? "hidden": "visible"}}>
                         <span className="mx-1 badge rounded-pill bg-primary">M</span>
                         <span className="mx-1">{props.data.medium_price}</span>
                     </div>
-                    <div className="mx-1" style={{visibility: props.data.large_price === 0? "hidden": "visible"}}>
+                    <div className="mx-1 drink-price" style={{visibility: props.data.large_price === 0? "hidden": "visible"}}>
                         <span className="mx-1 badge rounded-pill bg-primary">L</span>
                         <span className="mx-1">{props.data.large_price}</span>
                     </div>

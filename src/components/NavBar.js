@@ -21,7 +21,7 @@ export default function NavBar(props) {
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <div className={"nav-link-background " + (path[2] == "all"? " selected" : "")}>
+                        <div className={"nav-link-background mx-lg-0 mx-sm-3" + (path[2] == "all"? " selected" : "")}>
                             <Link className="nav-link" to={`/drinks/all`}>
                                 全部飲料
                             </Link>
@@ -31,7 +31,7 @@ export default function NavBar(props) {
                         props.drinkData.menu.map((series, key) => {
                             return (
                                 <li className="nav-item">
-                                    <div key={key} className={"nav-link-background" + (path[2] == key? " selected" : "")}>
+                                    <div key={key} className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[2] == key? " selected" : "")}>
                                         <Link className={"nav-link"} to={`/drinks/${key}`}>
                                             {series.series}
                                         </Link>
@@ -41,7 +41,7 @@ export default function NavBar(props) {
                         })
                     }
                     <li className="nav-item">
-                        <div className={"nav-link-background " + (path[1] == "orders"? " selected" : "")}>
+                        <div className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[1] == "orders"? " selected" : "")}>
                             <Link className="nav-link" to={`/orders`}>
                                 訂購紀錄
                             </Link>
