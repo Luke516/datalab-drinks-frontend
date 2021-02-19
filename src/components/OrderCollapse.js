@@ -4,7 +4,7 @@ import { serverBaseURL, submitOrder } from "../services/api";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 
 export default function OrderCollpase(props) {
-    const[size, setSize] = useState("");
+    const[size, setSize] = useState("medium");
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const nameInput = useRef(null);
@@ -29,6 +29,7 @@ export default function OrderCollpase(props) {
         submitOrder({
             name,
             id: props.data.item_id,
+            size,
             ice,
             sugar
         })
@@ -45,7 +46,7 @@ export default function OrderCollpase(props) {
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
                             <span className="">大小</span>
                             <div className="select-size ms-2 flex-grow-1">
-                                <SingleOptionButtonGroup id={props.data.item} title="size" options={props.data.large_price === 0? ["中"]: props.data.medium_price === 0? ["中"]: ["中", "中"] } onChange={setSize} />
+                                <SingleOptionButtonGroup id={props.data.item} title="size" options={props.data.large_price === 0? ["中"]: props.data.medium_price === 0? ["大"]: ["中", "大"] } values={props.data.large_price === 0? ["medium"]: props.data.medium_price === 0? ["large"]: ["medium", "large"] } onChange={setSize} />
                             </div>
                         </div>
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">

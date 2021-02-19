@@ -18,7 +18,7 @@ export function submitOrder(order) {
       body: JSON.stringify({
         order_by: order.name,
         item_id: order.id,
-        size: "medium",
+        size: order.size,
         sugar_id: parseInt(order.sugar),
         ice_id: parseInt(order.ice)
       })
