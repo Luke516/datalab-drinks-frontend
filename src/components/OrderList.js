@@ -12,8 +12,8 @@ export default function OrderList(props) {
         .then(items => {
             console.log(items);
             if(items){
-                setOrderData(items.payload.week_orders);
-                setOrderSummary(items.payload.aggregate_orders);
+                setOrderData(items.payload.week_orders || []);
+                setOrderSummary(items.payload.aggregate_orders || []);
             }else{
                 setOrderData([]);
             }
