@@ -22,13 +22,8 @@ export function submitOrder(order) {
         sugar_id: parseInt(order.sugar),
         ice_id: parseInt(order.ice)
       })
-    })
-    .then((response) => {
-      if (response.ok) {
-        alert("訂購成功");
-      }
-      return response.json()}
-    )
+    }
+  );
 }
 
 export function getOrders() {

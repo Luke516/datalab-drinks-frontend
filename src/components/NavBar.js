@@ -15,11 +15,11 @@ export default function NavBar(props) {
                     <img src={dataLabLogo} style={{height: "2.5rem"}}></img>
                 </div>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
                         <div className={"nav-link-background mx-lg-0 mx-sm-3" + (path[2] == "all"? " selected" : "")}>
                             <Link className="nav-link" to={`/drinks/all`}>
@@ -30,8 +30,8 @@ export default function NavBar(props) {
                     {props.drinkData && props.drinkData.menu &&
                         props.drinkData.menu.map((series, key) => {
                             return (
-                                <li className="nav-item">
-                                    <div key={key} className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[2] == key? " selected" : "")}>
+                                <li key={key} className="nav-item">
+                                    <div className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[2] == key? " selected" : "")}>
                                         <Link className={"nav-link"} to={`/drinks/${key}`}>
                                             {series.series}
                                         </Link>
