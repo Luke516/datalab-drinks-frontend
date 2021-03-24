@@ -1,5 +1,5 @@
 // export const serverBaseURL = "http://localhost:5000/v1";
-export const serverBaseURL = "http://140.114.85.21:5000/v1";
+export const serverBaseURL = "https://140.114.85.21:5002/v2";
 
 export function getMenu() {
   const url = serverBaseURL + "/menus/";

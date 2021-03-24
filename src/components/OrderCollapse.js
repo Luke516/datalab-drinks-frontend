@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Hint } from 'react-autocomplete-hint';
-import { AppContext } from "../App";
 import { serverBaseURL, submitOrder } from "../services/api";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 
@@ -9,18 +8,6 @@ export default function OrderCollpase(props) {
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const nameInput = useRef(null);
-
-    const appContext = useContext(AppContext);
-    const sugarLevels = appContext.drinkData.sugar;
-    let iceLevels = appContext.drinkData.ice;
-
-    if(!props.data.cold){
-        iceLevels = iceLevels.filter((e) => {return e["ice_id"] !== 2 && e["id"] !== 3});
-    }
-
-    if(!props.data.hot){
-        iceLevels = iceLevels.filter((e) => {return e["ice_id"] !== 1});
-    }
 
     useEffect(()=>{
         let username = localStorage.getItem('name') || "";
@@ -74,13 +61,13 @@ export default function OrderCollpase(props) {
                                 </small></span>
                             } */}
                             <div className="select-hot ms-2 flex-grow-1">
-                                <SingleOptionButtonGroup id={props.data.item} title="ice" options={iceLevels.map(iceLevel => iceLevel["ice_tag"])} values={iceLevels.map(iceLevel => iceLevel["ice_id"])} onChange={setIce} />
+                                <SingleOptionButtonGroup id={props.data.item} title="ice" options={props.data.ices.reduce((result, iceLevel) => {return iceLevel["enable"] ? result.concat([iceLevel["ice_tag"]]) : result}, [])} values={props.data.ices.reduce((result, iceLevel) => {return iceLevel["enable"] ? result.concat([iceLevel["ice_id"]]) : result}, [])} onChange={setIce} />
                             </div>
                         </div>
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
                             <span>甜度</span>
                             <div className="select-ice ms-2 flex-grow-1">
-                                <SingleOptionButtonGroup id={props.data.item} title="sugar" options={sugarLevels.map(sugarLevel => sugarLevel["sugar_tag"])} values={sugarLevels.map(sugarLevel => sugarLevel["sugar_id"])} onChange={setSugar} />
+                                <SingleOptionButtonGroup id={props.data.item} title="sugar" options={props.data.sugars.reduce((result, sugarLevel) => {return sugarLevel["enable"] ? result.concat([sugarLevel["sugar_tag"]]) : result}, [])} values={props.data.sugars.reduce((result, sugarLevel) => {return sugarLevel["enable"] ? result.concat([sugarLevel["sugar_id"]]) : result}, [])} onChange={setSugar} />
                             </div>
                         </div>
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
