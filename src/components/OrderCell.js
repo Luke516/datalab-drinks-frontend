@@ -10,7 +10,7 @@ export default function OrderCell(props) {
 
     return(
         <li className="list-group-item d-flex flex-row justify-content-between" onClick={()=>{if(!showModal)setShowModal(true)}}>
-            <span>{`${props.data.item}/${props.data.sugar_tag}/${props.data.ice_tag}`}</span>
+            <span>{`${props.data.item}`}</span>
             <span>{props.data.order_by}</span>
             {/* <div className="d-flex">
                 {Object.keys(props.data.prices).map((k) => {
