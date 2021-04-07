@@ -1,5 +1,5 @@
 // export const serverBaseURL = "http://localhost:5000/v1";
-export const serverBaseURL = "http://140.114.85.21:5000/v1";
+export const serverBaseURL = "https://shwu16.cs.nthu.edu.tw:5002/v2";
 
 export function getMenu() {
   const url = serverBaseURL + "/menus/";
@@ -22,13 +22,8 @@ export function submitOrder(order) {
         sugar_id: parseInt(order.sugar),
         ice_id: parseInt(order.ice)
       })
-    })
-    .then((response) => {
-      if (response.ok) {
-        alert("訂購成功");
-      }
-      return response.json()}
-    )
+    }
+  );
 }
 
 export function getOrders() {
