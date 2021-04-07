@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import OrderCell from "../components/OrderCell";
 import OrderSummary from "../components/OrderSummary";
 import { getOrders } from "../services/api";
+import Tree from 'react-animated-tree'
 
 export default function OrderList(props) {
     const [orderSummary, setOrderSummary] = useState([]);
@@ -25,6 +26,13 @@ export default function OrderList(props) {
     return(
         <div className="container" id="order-list">
             <OrderSummary data={orderSummary}/>
+
+            <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
+                <Tree content="Contents">
+                    <Tree content="Seeds" />
+                </Tree>
+            </Tree>
+
             <div className="row mt-4">
                 <h1>清單</h1>
                 <ul className="list-group list-group-flush">
