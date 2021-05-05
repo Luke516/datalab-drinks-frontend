@@ -27,11 +27,11 @@ export default function OrderList(props) {
         <div className="container" id="order-list">
             <OrderSummary data={orderSummary}/>
 
-            <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
+            {/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
                 <Tree content="Contents">
                     <Tree content="Seeds" />
                 </Tree>
-            </Tree>
+            </Tree> */}
 
             <div className="row mt-4">
                 <h1>清單</h1>
