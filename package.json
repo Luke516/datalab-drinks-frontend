@@ -1,4 +1,7 @@
 {
     "private": true,
-    "workspaces": ["datalab-drinks-frontend", "datalab-drinks-extension-backend"]
+    "workspaces": ["frontend", "extension-backend"],
+    "scripts": {
+        "start": "node extension-backend/index.js"
+      }
   }
