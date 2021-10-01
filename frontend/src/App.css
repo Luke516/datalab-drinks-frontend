@@ -37,3 +37,13 @@
     transform: rotate(360deg);
   }
 }
+
+
+body { 
+  font-family: "MyFont";
+  font-size: 1.2rem;
+}
+
+span {
+  font-size: 1.2rem;
+}

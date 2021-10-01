@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.b26111e9.chunk.css",
-    "main.js": "/static/js/main.7535b65c.chunk.js",
-    "main.js.map": "/static/js/main.7535b65c.chunk.js.map",
+    "main.css": "/static/css/main.1b15a9ac.chunk.css",
+    "main.js": "/static/js/main.2b316f8e.chunk.js",
+    "main.js.map": "/static/js/main.2b316f8e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.06ec6a94.js",
     "runtime-main.js.map": "/static/js/runtime-main.06ec6a94.js.map",
     "static/js/2.3ca6213b.chunk.js": "/static/js/2.3ca6213b.chunk.js",
@@ -10,15 +10,16 @@
     "static/js/3.651b0761.chunk.js": "/static/js/3.651b0761.chunk.js",
     "static/js/3.651b0761.chunk.js.map": "/static/js/3.651b0761.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.b26111e9.chunk.css.map": "/static/css/main.b26111e9.chunk.css.map",
+    "static/css/main.1b15a9ac.chunk.css.map": "/static/css/main.1b15a9ac.chunk.css.map",
     "static/js/2.3ca6213b.chunk.js.LICENSE.txt": "/static/js/2.3ca6213b.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/LXGWWenKaiMonoTC-Regular.3c828dbf.ttf",
     "static/media/datalab-bg.c70e3884.jpg": "/static/media/datalab-bg.c70e3884.jpg",
     "static/media/datalab-logo-white.d8636724.png": "/static/media/datalab-logo-white.d8636724.png"
   },
   "entrypoints": [
     "static/js/runtime-main.06ec6a94.js",
     "static/js/2.3ca6213b.chunk.js",
-    "static/css/main.b26111e9.chunk.css",
-    "static/js/main.7535b65c.chunk.js"
+    "static/css/main.1b15a9ac.chunk.css",
+    "static/js/main.2b316f8e.chunk.js"
   ]
 }

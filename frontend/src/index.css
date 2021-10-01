@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'MyFont';
+  src: local('MyFont'), url(./fonts/LXGWWenKaiMonoTC-Regular.ttf) format('woff');
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

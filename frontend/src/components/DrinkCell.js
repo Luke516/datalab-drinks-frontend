@@ -9,7 +9,7 @@ export default function DrinkCell(props) {
         <li className="list-group-item d-flex flex-column p-0" onClick={()=>{if(!showModal)setShowModal(true)}}>
             <button className="btn p-2" type="button" data-bs-toggle="collapse" data-bs-target={`#${props.data.item}`} aria-expanded="false" aria-controls={props.data.item}>
             <div className="d-flex flex-row justify-content-between">
-                {props.data.item}
+                <span>{props.data.item}</span>
                 <div className="d-flex">
                     <div className="mx-1 drink-price" style={{visibility: props.data.medium_price === 0? "hidden": "visible"}}>
                         <span className="mx-1 badge rounded-pill bg-primary">M</span>
