@@ -23,6 +23,12 @@ export default function OrderList(props) {
         return () => {}
     }, [])
 
+    useEffect(()=>{
+        setTimeout(()=>{
+            window._jf.flush();
+        }, 1000)
+    }, []);
+
     return(
         <div className="container" id="order-list">
             <OrderSummary data={orderSummary}/>

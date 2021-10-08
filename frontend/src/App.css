@@ -40,10 +40,11 @@
 
 
 body { 
-  font-family: "datf5";
-  font-size: 1.2rem;
+  font-family: "jf-jinxuanlatte";
+  caret-color: transparent;
+  font-size: 1.1rem;
 }
 
 span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }

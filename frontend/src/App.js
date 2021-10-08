@@ -1,6 +1,6 @@
 import "./main.scss";
 import "./App.css";
-import React, {Suspense, useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState, useCallback} from 'react';
 import {
   BrowserRouter as Router,
   useRouteMatch,

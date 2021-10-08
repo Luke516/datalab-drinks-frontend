@@ -11,8 +11,12 @@ export default function AllDrinks(props) {
     let location = useLocation();
     let param = useParams();
 
+    useEffect(()=>{
+        // window._jf.flush();
+    }, []);
+
     return(
-        <>
+        <React.Fragment>
             <div className="container tab-content" id="nav-tabContent">
             {props.drinkData && props.drinkData.menu &&
                 props.drinkData.menu.map((series, key) => {
@@ -26,6 +30,6 @@ export default function AllDrinks(props) {
                 })
             }
             </div>
-        </>
+        </React.Fragment>
     )
 }

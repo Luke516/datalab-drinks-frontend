@@ -4,10 +4,6 @@ import { AppContext } from "../App";
 export default function OrderTreeCell(props) {
     const [showModal, setShowModal] = useState(false);
 
-    const appContext = useContext(AppContext);
-    const sugarLevels = appContext.drinkData.sugar;
-    let iceLevels = appContext.drinkData.ice;
-
     return(
         <li className="list-group-item d-flex flex-row justify-content-between" onClick={()=>{if(!showModal)setShowModal(true)}}>
             <span>{`${props.data.item}`}</span>
