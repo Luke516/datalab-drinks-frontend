@@ -2,12 +2,16 @@ import React, { useContext, useState, useRef, useEffect } from "react";
 import { Hint } from 'react-autocomplete-hint';
 import { serverBaseURL, submitOrder } from "../services/api";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
+import { AppContext } from "../App";
 
 export default function OrderCollpase(props) {
     const[size, setSize] = useState("medium");
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const nameInput = useRef(null);
+
+    const appContext = useContext(AppContext);
+    const {showSuccessModal, setShowSuccessModal} = appContext;
 
     useEffect(()=>{
         let username = localStorage.getItem('name') || "";
@@ -32,7 +36,9 @@ export default function OrderCollpase(props) {
         })
         .then((response)=>{
             if(response.ok){
-                alert("訂購成功!");
+                // alert("訂購成功!");
+                console.log("訂購成功!");
+                setShowSuccessModal(true);
             }
         });
     }

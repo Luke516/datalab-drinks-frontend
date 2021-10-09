@@ -14,28 +14,41 @@ import NavBar from "./components/NavBar";
 import { getMenu } from "./services/api";
 import OrderList from "./components/OrderList";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+
 export const AppContext = React.createContext();
 
 function App() {
   const [drinkData, setDrinkData] = useState([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [focusDrinkId, setFocusDrinkId] = useState("");
 
   useEffect(() => {
-      getMenu()
-      .then(items => {
-          console.log(items);
-          console.log(items.payload);
-          setDrinkData(items.payload);
-      })
-      return () => {}
+    AOS.init({
+      duration : 2000
+    });
+
+    getMenu()
+    .then(items => {
+        console.log(items);
+        console.log(items.payload);
+        setDrinkData(items.payload);
+    })
+    return () => {}
   }, [])
 
   const appContext = {
-    drinkData
+    drinkData,
+    showSuccessModal,
+    setShowSuccessModal,
+    focusDrinkId,
+    setFocusDrinkId
   };
 
   return (
     <AppContext.Provider value={appContext}>
-    <div className="App">
+    <div className="App" data-aos="fade-in" data-aos-delay="700">
       <Router>
         <NavBar drinkData={drinkData}/>
         <Suspense fallback={<div>Loading...</div>}>
@@ -51,7 +64,7 @@ function App() {
               />
             </Route>
             <Route path="/drinks/:series">
-                <AllDrinks drinkData={drinkData}/>
+                <AllDrinks/>
             </Route>
             <Route exact path="/orders">
               <OrderList/>

@@ -26,11 +26,11 @@ export default function OrderList(props) {
     useEffect(()=>{
         setTimeout(()=>{
             window._jf.flush();
-        }, 1000)
+        }, 500)
     }, []);
 
     return(
-        <div className="container" id="order-list">
+        <div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
             <OrderSummary data={orderSummary}/>
 
             {/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>

@@ -8,7 +8,6 @@ export default function OrderModal(props) {
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const[flavor, setFlavor] = useState("");
-    const[name, setName] = useState("QWQ");
 
     const appContext = useContext(AppContext);
     const sugarLevels = appContext.drinkData.sugar;

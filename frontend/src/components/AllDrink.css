@@ -1,0 +1,35 @@
+.success-modal.success-modal-enter {
+    bottom: -10rem;
+    display: flex;
+}
+
+.success-modal.success-modal-enter-active {
+    bottom: 2rem;
+    transition: all 200ms;
+    display: flex;
+}
+
+.success-modal.success-modal-enter-done {
+    bottom: 2rem;
+    display: flex;
+}
+
+.success-modal.success-modal-exit {
+    bottom: 2rem;
+    display: flex;
+}
+
+.success-modal.success-modal-exit-active {
+    bottom: -10rem;
+    transition: all 200ms;
+    display: flex;
+}
+
+.success-modal.success-modal-exit-done {
+    display: none;
+}
+
+.success-modal {
+    position: fixed;
+    display: none;
+}
