@@ -2,15 +2,13 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../App";
 
 export default function OrderCell(props) {
-    const [showModal, setShowModal] = useState(false);
-
     const appContext = useContext(AppContext);
     const sugarLevels = appContext.drinkData.sugar;
     let iceLevels = appContext.drinkData.ice;
 
     return(
-        <li className="list-group-item d-flex flex-row justify-content-between" onClick={()=>{if(!showModal)setShowModal(true)}}>
-            <span>{`${props.data.item}`}</span>
+        <li className="list-group-item d-flex flex-row justify-content-between">
+            <span>{`${props.data.item}(${props.data.size == "large"? "大": "中"})/${props.data.ice_tag}/${props.data.sugar_tag}`}</span>
             <span>{props.data.order_by}</span>
             {/* <div className="d-flex">
                 {Object.keys(props.data.prices).map((k) => {

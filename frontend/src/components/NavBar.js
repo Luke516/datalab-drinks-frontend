@@ -9,7 +9,7 @@ export default function NavBar(props) {
     let path = location.pathname.split("/");
 
     return(
-        <nav className="navbar navbar-light navbar-expand-md p-1" id="nav-bar" role="tablist">
+        <nav className="navbar navbar-light navbar-expand-md px-1 py-0" id="nav-bar" role="tablist">
             <div id="datalab-drink-logo-background" className="navbar-brand py-2" style={{backgroundImage: `url(${logoBgImg})`}}>
                 <div id="datalab-drink-logo">
                     <img src={dataLabLogo} style={{height: "2.5rem"}}></img>

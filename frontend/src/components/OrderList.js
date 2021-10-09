@@ -8,17 +8,30 @@ export default function OrderList(props) {
     const [orderSummary, setOrderSummary] = useState([]);
     const [orderData, setOrderData] = useState([]);
 
+    const orderCompare = ( a, b ) => {
+        let aa = a.item + a.ice_tag + a.sugar_tag;
+        let bb = b.item + b.ice_tag + b.sugar_tag;
+
+        if ( aa < bb ){
+          return -1;
+        }
+        if ( aa > bb ){
+          return 1;
+        }
+        return 0;
+    }
+
     useEffect(() => {
         getOrders()
         .then(items => {
             console.log(items);
             if(items){
-                setOrderData(items.payload.week_orders || []);
+                console.log(items.payload);
+                setOrderData(items.payload.week_orders.sort(orderCompare) || []);
                 setOrderSummary(items.payload.aggregate_orders || []);
             }else{
                 setOrderData([]);
             }
-            
         })
         return () => {}
     }, [])
