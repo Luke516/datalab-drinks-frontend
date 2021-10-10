@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import DrinkList from "../components/DrinkList";
 import DrinkCell from "../components/DrinkList";
 import { getMenu } from "../services/api";
+import "./DrinkSection.css"
 
 export default function DrinkSection(props) {
 
     return(
         <div className="my-4">
             <h1>{props.series.series}</h1>
-            <div className="row">
+            <div className="row card drink-section p-2">
                 <DrinkList data={props.series.items}/>
             </div>
         </div>

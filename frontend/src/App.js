@@ -1,5 +1,6 @@
 import "./main.scss";
 import "./App.css";
+import "animate.css";
 import React, {Suspense, useEffect, useState, useCallback} from 'react';
 import {
   BrowserRouter as Router,
@@ -23,6 +24,9 @@ function App() {
   const [drinkData, setDrinkData] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [focusDrinkId, setFocusDrinkId] = useState("");
+  const [showBackground, setShowBackground] = useState(false);
+
+  const backgroungImgUrl = "https://i.imgur.com/SDLzr35.jpg";
 
   useEffect(() => {
     AOS.init({
@@ -34,9 +38,20 @@ function App() {
         console.log(items);
         console.log(items.payload);
         setDrinkData(items.payload);
+
+        setTimeout(()=>{
+          window._jf.flush();
+        }, 500);
     })
-    return () => {}
   }, [])
+
+  useEffect(()=>{
+    let backImg = new Image();
+    backImg.src = backgroungImgUrl;
+    backImg.onload = () => {
+        setShowBackground(true);
+    };
+  }, []);
 
   const appContext = {
     drinkData,
@@ -51,6 +66,16 @@ function App() {
     <div className="App" data-aos="fade-in" data-aos-delay="700">
       <Router>
         <NavBar drinkData={drinkData}/>
+        {showBackground &&
+          <div className="vh-100 vw-100 position-fixed" data-aos="fade-in" style={{
+              top: 0,
+              zIndex: -1,
+              backgroundImage: `url(${backgroungImgUrl})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              filter: "blur(8px)"
+          }}></div>
+        }
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/">

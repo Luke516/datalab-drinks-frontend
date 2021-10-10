@@ -7,7 +7,7 @@ export default function OrderCell(props) {
     let iceLevels = appContext.drinkData.ice;
 
     return(
-        <li className="list-group-item d-flex flex-row justify-content-between">
+        <li className="list-group-item d-flex flex-row justify-content-between drink-section">
             <span>{`${props.data.item}(${props.data.size == "large"? "大": "中"})/${props.data.ice_tag}/${props.data.sugar_tag}`}</span>
             <span>{props.data.order_by}</span>
             {/* <div className="d-flex">

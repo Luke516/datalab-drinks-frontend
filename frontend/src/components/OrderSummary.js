@@ -13,7 +13,7 @@ export default function OrderSummary(props) {
             <h1>統計</h1>
             {props.data.map((item, key) => {
                 return (<div key={key} className="col-lg-4 col-md-6 p-2">
-                    <div className="d-flex rounded border border-primary m-1 w-100 h-100">
+                    <div className="d-flex rounded border border-primary m-1 w-100 h-100  drink-section">
                         <div className="flex-grow-1 d-flex justify-content-center align-items-center p-2">
                             <span>{`${item.item}(${item.size === "large"? "大": "中"})/${item.sugar_tag}/${item.ice_tag}`}</span>
                         </div>

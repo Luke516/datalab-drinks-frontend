@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import DrinkSection from "../components/DrinkSection";
 import { useLocation, useParams } from "react-router-dom";
 import { Modal, Button, Alert } from "react-bootstrap";
@@ -19,6 +19,7 @@ export default function AllDrinks(props) {
         setTimeout(()=>{
             window._jf.flush();
         }, 500)
+
     }, []);
 
     return(

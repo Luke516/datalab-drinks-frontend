@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.47239663.chunk.css",
-    "main.js": "/static/js/main.0e3b2acb.chunk.js",
-    "main.js.map": "/static/js/main.0e3b2acb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.92f0ca13.js",
-    "runtime-main.js.map": "/static/js/runtime-main.92f0ca13.js.map",
-    "static/css/2.8c2ae137.chunk.css": "/static/css/2.8c2ae137.chunk.css",
-    "static/js/2.c21d5529.chunk.js": "/static/js/2.c21d5529.chunk.js",
-    "static/js/2.c21d5529.chunk.js.map": "/static/js/2.c21d5529.chunk.js.map",
-    "static/js/3.5353c7b5.chunk.js": "/static/js/3.5353c7b5.chunk.js",
-    "static/js/3.5353c7b5.chunk.js.map": "/static/js/3.5353c7b5.chunk.js.map",
+    "main.css": "/static/css/main.b9c12428.chunk.css",
+    "main.js": "/static/js/main.867f5781.chunk.js",
+    "main.js.map": "/static/js/main.867f5781.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2b464536.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2b464536.js.map",
+    "static/css/2.edb10b62.chunk.css": "/static/css/2.edb10b62.chunk.css",
+    "static/js/2.7ada4d8b.chunk.js": "/static/js/2.7ada4d8b.chunk.js",
+    "static/js/2.7ada4d8b.chunk.js.map": "/static/js/2.7ada4d8b.chunk.js.map",
+    "static/js/3.44fe004e.chunk.js": "/static/js/3.44fe004e.chunk.js",
+    "static/js/3.44fe004e.chunk.js.map": "/static/js/3.44fe004e.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.8c2ae137.chunk.css.map": "/static/css/2.8c2ae137.chunk.css.map",
-    "static/css/main.47239663.chunk.css.map": "/static/css/main.47239663.chunk.css.map",
-    "static/js/2.c21d5529.chunk.js.LICENSE.txt": "/static/js/2.c21d5529.chunk.js.LICENSE.txt",
+    "static/css/2.edb10b62.chunk.css.map": "/static/css/2.edb10b62.chunk.css.map",
+    "static/css/main.b9c12428.chunk.css.map": "/static/css/main.b9c12428.chunk.css.map",
+    "static/js/2.7ada4d8b.chunk.js.LICENSE.txt": "/static/js/2.7ada4d8b.chunk.js.LICENSE.txt",
     "static/media/datalab-bg.c70e3884.jpg": "/static/media/datalab-bg.c70e3884.jpg",
     "static/media/datalab-logo-white.d8636724.png": "/static/media/datalab-logo-white.d8636724.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.92f0ca13.js",
-    "static/css/2.8c2ae137.chunk.css",
-    "static/js/2.c21d5529.chunk.js",
-    "static/css/main.47239663.chunk.css",
-    "static/js/main.0e3b2acb.chunk.js"
+    "static/js/runtime-main.2b464536.js",
+    "static/css/2.edb10b62.chunk.css",
+    "static/js/2.7ada4d8b.chunk.js",
+    "static/css/main.b9c12428.chunk.css",
+    "static/js/main.867f5781.chunk.js"
   ]
 }

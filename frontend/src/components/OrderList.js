@@ -32,9 +32,12 @@ export default function OrderList(props) {
             }else{
                 setOrderData([]);
             }
+            
+            setTimeout(()=>{
+                window._jf.flush();
+            }, 500);
         })
-        return () => {}
-    }, [])
+    }, []);
 
     useEffect(()=>{
         setTimeout(()=>{
@@ -43,23 +46,25 @@ export default function OrderList(props) {
     }, []);
 
     return(
-        <div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
-            <OrderSummary data={orderSummary}/>
+        <React.Fragment>
+            <div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
+                <OrderSummary data={orderSummary}/>
 
-            {/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
-                <Tree content="Contents">
-                    <Tree content="Seeds" />
-                </Tree>
-            </Tree> */}
+                {/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
+                    <Tree content="Contents">
+                        <Tree content="Seeds" />
+                    </Tree>
+                </Tree> */}
 
-            <div className="row mt-4">
-                <h1>清單</h1>
-                <ul className="list-group list-group-flush">
-                    {orderData.map((item, key) => {
-                        return (<OrderCell key={key} data={item}/>)
-                    })}
-                </ul>
+                <div className="row mt-4">
+                    <h1>清單</h1>
+                    <ul className="list-group list-group-flush">
+                        {orderData.map((item, key) => {
+                            return (<OrderCell key={key} data={item}/>)
+                        })}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     )
 }
