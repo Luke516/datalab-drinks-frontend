@@ -60,6 +60,7 @@ const main = async () => {
       console.log("err");
       console.log(err);
     }
+    conn.close();
 
     res.json(req.body);
   });
@@ -87,6 +88,7 @@ const main = async () => {
       console.log("err");
       console.log(err);
     }
+    conn.close();
 
     console.log(payload);
 

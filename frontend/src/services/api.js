@@ -76,6 +76,5 @@ export function getOrders() {
     })
     .catch((error) => {
       console.log(error);
-      return getOrdersBackup();
     })
 }
