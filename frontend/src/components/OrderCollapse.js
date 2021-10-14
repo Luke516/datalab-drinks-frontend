@@ -1,17 +1,19 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Hint } from 'react-autocomplete-hint';
-import { serverBaseURL, submitOrder } from "../services/api";
+import { serverBaseURL, submitOrder, submitOrderBackUp } from "../services/api";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 import { AppContext } from "../App";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function OrderCollpase(props) {
+    const[submitting, setSubmitting] = useState(false);
     const[size, setSize] = useState("medium");
     const[sugar, setSugar] = useState("");
     const[ice, setIce] = useState("");
     const nameInput = useRef(null);
 
     const appContext = useContext(AppContext);
-    const {showSuccessModal, setShowSuccessModal} = appContext;
+    const { fallback, showSuccessModal, setShowSuccessModal} = appContext;
 
     useEffect(()=>{
         let username = localStorage.getItem('name') || "";
@@ -21,13 +23,14 @@ export default function OrderCollpase(props) {
     }, [])
 
     const submit = () => {
+        setSubmitting(true);
         let name = nameInput.current.value;
         if(name.length < 1){
             alert("請寫名字 QWQ!");
             return;
         }
         localStorage.setItem('name', name);
-        submitOrder({
+        (fallback ? submitOrderBackUp :submitOrder)({
             name,
             id: props.data.item_id,
             size,
@@ -39,6 +42,7 @@ export default function OrderCollpase(props) {
                 // alert("訂購成功!");
                 console.log("訂購成功!");
                 setShowSuccessModal(true);
+                setSubmitting(false);
             }
         });
     }
@@ -86,7 +90,9 @@ export default function OrderCollpase(props) {
                         </div>
                     </div>
                     <div className="col-lg-2 px-0 py-2">
-                        <button type="button" className="btn btn-outline-primary w-100 h-100" onClick={submit}>送出訂單</button>
+                        <button type="button" className="btn btn-outline-primary w-100 h-100" onClick={submit}>
+                            {submitting? <LoadingSpinner/> : <span>送出訂單</span>}
+                        </button>
                     </div>
                 </div>
             </div>

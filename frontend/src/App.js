@@ -14,6 +14,7 @@ import AllDrinks from "./components/AllDrinks";
 import NavBar from "./components/NavBar";
 import { getMenu } from "./services/api";
 import OrderList from "./components/OrderList";
+import {menu} from "./services/menu-backup";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
@@ -22,6 +23,7 @@ export const AppContext = React.createContext();
 
 function App() {
   const [drinkData, setDrinkData] = useState([]);
+  const [fallback, setFallback] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [focusDrinkId, setFocusDrinkId] = useState("");
   const [showBackground, setShowBackground] = useState(false);
@@ -38,10 +40,16 @@ function App() {
         console.log(items);
         console.log(items.payload);
         setDrinkData(items.payload);
-
-        setTimeout(()=>{
-          window._jf.flush();
-        }, 500);
+    })
+    .catch((error) => {
+      console.log(error);
+      setDrinkData(menu);
+      setFallback(true);
+    })
+    .finally(()=>{
+      setTimeout(()=>{
+        if(window._jf) window._jf.flush();
+      }, 500);
     })
   }, [])
 
@@ -58,7 +66,8 @@ function App() {
     showSuccessModal,
     setShowSuccessModal,
     focusDrinkId,
-    setFocusDrinkId
+    setFocusDrinkId,
+    fallback
   };
 
   return (
@@ -66,6 +75,11 @@ function App() {
     <div className="App" data-aos="fade-in" data-aos-delay="700">
       <Router>
         <NavBar drinkData={drinkData}/>
+        {fallback && 
+          <div className="alert alert-warning" role="alert">
+            因後端系統異常切換到備用點餐系統，速度較慢敬請見諒
+          </div>
+        }
         {showBackground &&
           <div className="vh-100 vw-100 position-fixed" data-aos="fade-in" style={{
               top: 0,
