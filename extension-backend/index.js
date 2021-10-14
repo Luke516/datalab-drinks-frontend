@@ -41,7 +41,7 @@ const main = async () => {
     console.log(`Sent ${count} passwords`);
   });
 
-  app.post('/orders', async (req, res) => {
+  app.post('/api/orders', async (req, res) => {
     console.log(req.body);
 
     var conn = await mysql.createConnection({
@@ -64,7 +64,7 @@ const main = async () => {
     res.json(req.body);
   });
 
-  app.get('/orders', async (req, res) => {
+  app.get('/api/orders', async (req, res) => {
     console.log(req.body);
     let payload = [];
 
