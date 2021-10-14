@@ -74,6 +74,11 @@ export default function OrderList(props) {
             <div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
                 <OrderSummary data={orderSummary}/>
                 {loading && <LoadingSpinner/>}
+                { fallback && 
+                    <div className ="alert alert-secondary">
+                        <span>暫不提供</span>
+                    </div> 
+                }
 
                 {/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
                     <Tree content="Contents">
