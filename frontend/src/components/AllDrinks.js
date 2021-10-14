@@ -5,8 +5,10 @@ import { Modal, Button, Alert } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
 import { AppContext } from "../App";
 import "./AllDrink.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function AllDrinks(props) {
+    const [loading, setLoading] = useState(true);
     const appContext = useContext(AppContext);
     const {drinkData, showSuccessModal, setShowSuccessModal} = appContext;
 
@@ -17,13 +19,23 @@ export default function AllDrinks(props) {
 
     useEffect(()=>{
         setTimeout(()=>{
-            window._jf.flush();
+            if(window._jf) window._jf.flush();
         }, 500)
 
     }, []);
 
+    useEffect(()=>{
+        if(drinkData && drinkData.menu){
+            setLoading(false);
+        }
+    }, [drinkData])
+
     return(
         <React.Fragment>
+            {
+                loading &&
+                <LoadingSpinner />
+            }
             <div className="container tab-content" data-aos="fade-in" data-aos-duration="300" id="nav-tabContent">
             {drinkData && drinkData.menu &&
                 drinkData.menu.map((series, key) => {

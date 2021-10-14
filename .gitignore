@@ -27,3 +27,5 @@ yarn-error.log*
 package-lock.json
 
 *.icloud
+
+*/.env
