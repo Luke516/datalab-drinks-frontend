@@ -47,7 +47,6 @@ export default function OrderList(props) {
             if(items){
                 console.log(items.payload);
                 setBackupOrderData(items.payload.week_orders.sort(orderCompare) || []);
-                setOrderSummary(items.payload.aggregate_orders || []);
             }else{
                 setOrderData([]);
             }
