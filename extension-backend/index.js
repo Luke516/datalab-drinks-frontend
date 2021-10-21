@@ -45,11 +45,11 @@ const main = async () => {
     console.log(req.body);
 
     var conn = await mysql.createConnection({
-      host: 'flora-temp.c63cjkvajnek.us-west-2.rds.amazonaws.com',
-      user: 'admin',
-      password: '123qweasdzxc',
-      database: 'flora_test',
-      port: 3306
+      host: process.env.DBHOST,
+      user: process.env.DBUSER,
+      password: process.env.DBPASSWORD,
+      database: process.env.DB,
+      port: process.env.DBPORT
     });
 
     const querySql = `INSERT INTO Drink (orderer, record) VALUES (?, ?) ON DUPLICATE KEY UPDATE orderer=?, record=? ;`
@@ -60,6 +60,7 @@ const main = async () => {
       console.log("err");
       console.log(err);
     }
+    conn.close();
 
     res.json(req.body);
   });
@@ -87,6 +88,7 @@ const main = async () => {
       console.log("err");
       console.log(err);
     }
+    conn.close();
 
     console.log(payload);
 

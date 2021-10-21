@@ -51,16 +51,7 @@ export default function OrderList(props) {
             }else{
                 setOrderData([]);
             }
-            
-            setTimeout(()=>{
-                if(window._jf) window._jf.flush();
-            }, 500);
-            setLoading(false);
         });
-
-        setTimeout(()=>{
-            if(window._jf) window._jf.flush();
-        }, 500);
     }, []);
 
     useEffect(()=>{
@@ -93,8 +84,9 @@ export default function OrderList(props) {
                         {orderData.map((item, key) => {
                             return (<OrderCell key={key} data={item}/>)
                         })}
+                        {fallback && <span>以下是備用系統訂單</span>}
                         {backupOrderData.map((item, key) => {
-                            return (<OrderCell key={key} data={item}/>)
+                            return (<OrderCell key={key + 100} data={item}/>)
                         })}
                     </ul>
                 </div>

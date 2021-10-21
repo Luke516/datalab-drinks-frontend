@@ -22,7 +22,7 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 export const AppContext = React.createContext();
 
 function App() {
-  const [drinkData, setDrinkData] = useState([]);
+  const [drinkData, setDrinkData] = useState(menu);
   const [fallback, setFallback] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [focusDrinkId, setFocusDrinkId] = useState("");
@@ -43,7 +43,6 @@ function App() {
     })
     .catch((error) => {
       console.log(error);
-      setDrinkData(menu);
       setFallback(true);
     })
     .finally(()=>{
