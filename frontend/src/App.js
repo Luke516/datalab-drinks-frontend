@@ -12,56 +12,116 @@ import {
 } from "react-router-dom";
 import AllDrinks from "./components/AllDrinks";
 import NavBar from "./components/NavBar";
-import { getMenu } from "./services/api";
+import { getParticipantGroups, getParticipants } from "./services/api";
 import OrderList from "./components/OrderList";
 import {menu} from "./services/menu-backup";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import ParticipantList from "./components/ParticipantList";
+import GroupSetting from "./components/GroupSetting";
 
 export const AppContext = React.createContext();
 
+const headerAbbrs = {
+  "信箱": "電子信箱",
+  "平常專注時是否\n有分心的情況": "分心",
+  "是否有用過幫助專注的 App\n例如：flora, forest, 番茄鐘...等": "用過專注App",
+  "平日/假日預計會使用 App 的時間 [平日]": "平日使用時間",
+  "平日/假日預計會使用 App 的時間 [假日]": "假日使用時間",
+  "預計使用 App 時會專注的項目 \n(例如：線性代數、英文、繪畫...等)": "預計專注項目",
+  "Apple ID (與 iPhone 綁定之信箱)": "Apple ID",
+  "可以至清大台達館/google meet\n聽取實驗說明的日期": "說明日期"
+}
+
 function App() {
-  const [drinkData, setDrinkData] = useState(menu);
+  const [participantData, setPrticipantData] = useState({
+    columns: [],
+    rows: []
+  });
+  const [groupData, setGroupData] = useState({
+    columns: [],
+    rows: []
+  });
   const [fallback, setFallback] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [focusDrinkId, setFocusDrinkId] = useState("");
   const [showBackground, setShowBackground] = useState(false);
 
-  const backgroungImgUrl = "https://i.imgur.com/SDLzr35.jpg";
+  // const backgroungImgUrl = "https://i.imgur.com/SDLzr35.jpg"; QWQ
 
   useEffect(() => {
     AOS.init({
       duration : 2000
     });
 
-    getMenu()
-    .then(items => {
-        console.log(items);
-        console.log(items.payload);
-        setDrinkData(items.payload);
+    getParticipants()
+    .then(payload => {
+        console.log(payload);
+        let columns = [];
+        for(let header of payload.headerValues) {
+          columns.push(header === "照片"?{
+            Header: header in headerAbbrs ? headerAbbrs[header] : header,
+            accessor: header, // accessor is the "key" in the data
+            // maxWidth: 70,
+            // minWidth: 70,
+            // Cell: ({ cell: { value } }) => (
+            //   <img
+            //     src={value.replace("open?id=", "uc?export=view&id=")}
+            //     width={60}
+            //   />
+            // )
+          }: {
+            Header: header in headerAbbrs ? headerAbbrs[header] : header,
+            accessor: header, // accessor is the "key" in the data
+          })
+        } 
+        setPrticipantData({
+          columns,
+          rows: payload.rows
+        });
     })
     .catch((error) => {
       console.log(error);
-      setFallback(true);
+    //   setFallback(true);
     })
-    .finally(()=>{
-      setTimeout(()=>{
-        if(window._jf) window._jf.flush();
-      }, 500);
+    // .finally(()=>{
+    //   setTimeout(()=>{
+    //     if(window._jf) window._jf.flush();
+    //   }, 500);
+    // })
+
+    getParticipantGroups()
+    .then(payload => {
+        console.log(payload);
+        let columns = [];
+        for(let header of payload.headerValues) {
+          columns.push({
+            Header: header,
+            accessor: header, // accessor is the "key" in the data
+          })
+        } 
+        setGroupData({
+          columns,
+          rows: payload.rows
+        });
+    })
+    .catch((error) => {
+      console.log(error);
     })
   }, [])
 
   useEffect(()=>{
-    let backImg = new Image();
-    backImg.src = backgroungImgUrl;
-    backImg.onload = () => {
-        setShowBackground(true);
-    };
+    // let backImg = new Image();
+    // backImg.src = backgroungImgUrl;
+    // backImg.onload = () => {
+    //     setShowBackground(true);
+    // };
   }, []);
 
   const appContext = {
-    drinkData,
+    participantData,
+    groupData,
     showSuccessModal,
     setShowSuccessModal,
     focusDrinkId,
@@ -73,52 +133,32 @@ function App() {
     <AppContext.Provider value={appContext}>
     <div className="App" data-aos="fade-in" data-aos-delay="700">
       <Router>
-        <NavBar drinkData={drinkData}/>
-        {fallback && 
-          <div className="alert alert-warning" role="alert">
-            因後端系統異常切換到備用點餐系統，速度較慢敬請見諒
-          </div>
-        }
-        {showBackground &&
-          <div className="vh-100 vw-100 position-fixed" data-aos="fade-in" style={{
-              top: 0,
-              zIndex: -1,
-              backgroundImage: `url(${backgroungImgUrl})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              filter: "blur(8px)"
-          }}></div>
-        }
+        <NavBar/>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/">
               <Redirect
-                to={{pathname: "/drinks/all"}}
+                to={{pathname: "/participants"}}
               />
             </Route>
-            <Route exact path="/drinks">
-              <Redirect
-                to={{pathname: "/drinks/all"}}
-              />
+            <Route path="/participants">
+                <ParticipantList />
             </Route>
-            <Route path="/drinks/:series">
-                <AllDrinks/>
-            </Route>
-            <Route exact path="/orders">
-              <OrderList/>
+            <Route path="/groups">
+                <GroupSetting />
             </Route>
           </Switch>
         </Suspense>
       </Router>
     </div>
-    <footer className="bd-footer p-3 mt-5 bg-light text-center text-sm-start">
+    {/* <footer className="bd-footer p-3 mt-5 bg-light text-center text-sm-start">
       <div className="container">
         <ul className="bd-footer-links ps-0 mb-3">
           <li className="d-inline-block"><a href="https://github.com/jackraken/datalab-drinks-frontend">GitHub</a></li>
         </ul>
         <p className="mb-0">Designed and built with all the love in the world by the <a href="http://www.cs.nthu.edu.tw/~shwu/">Datalab</a> with the help of <a href="https://www.camacafe.com/">cama coffee</a>(03)571-1500.</p>
       </div>
-    </footer>
+    </footer> */}
     </AppContext.Provider>
   );
 }

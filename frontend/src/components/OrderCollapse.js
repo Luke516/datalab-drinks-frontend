@@ -23,28 +23,28 @@ export default function OrderCollpase(props) {
     }, [])
 
     const submit = () => {
-        setSubmitting(true);
-        let name = nameInput.current.value;
-        if(name.length < 1){
-            alert("請寫名字 QWQ!");
-            return;
-        }
-        localStorage.setItem('name', name);
-        (fallback ? submitOrderBackUp :submitOrder)({
-            name,
-            id: props.data.item_id,
-            size,
-            ice,
-            sugar
-        })
-        .then((response)=>{
-            if(response.ok){
-                // alert("訂購成功!");
-                console.log("訂購成功!");
-                setShowSuccessModal(true);
-                setSubmitting(false);
-            }
-        });
+        // setSubmitting(true);
+        // let name = nameInput.current.value;
+        // if(name.length < 1){
+        //     alert("請寫名字 QWQ!");
+        //     return;
+        // }
+        // localStorage.setItem('name', name);
+        // (fallback ? submitOrderBackUp :submitOrder)({
+        //     name,
+        //     id: props.data.item_id,
+        //     size,
+        //     ice,
+        //     sugar
+        // })
+        // .then((response)=>{
+        //     if(response.ok){
+        //         // alert("訂購成功!");
+        //         console.log("訂購成功!");
+        //         setShowSuccessModal(true);
+        //         setSubmitting(false);
+        //     }
+        // });
     }
     
     const members = ["老師", "吳義路", "林玉山", "王亨傑","徐偉倫","袁嘉宏","韓宜庭","張育榮","王平郁","何星緯","孫浩倫","蘇瑞揚","林雨萱","羅昱喬","許尊霖","徐郁閎","詹其侁","蔡怡君",

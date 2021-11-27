@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import OrderCell from "../components/OrderCell";
 import OrderSummary from "../components/OrderSummary";
-import { getOrders, getOrdersBackup } from "../services/api";
+import { } from "../services/api";
 import Tree from 'react-animated-tree'
 import { AppContext } from "../App";
 import LoadingSpinner from "./LoadingSpinner";
@@ -29,29 +29,29 @@ export default function OrderList(props) {
     }
 
     useEffect(() => {
-        if(!fallback){
-            getOrders().then((items) => {
-                console.log(items);
-                if(items){
-                    console.log(items.payload);
-                    setOrderData(items.payload.week_orders.sort(orderCompare) || []);
-                    setOrderSummary(items.payload.aggregate_orders || []);
-                }else{
-                    setOrderData([]);
-                }
-                setLoading(false);
-            });
-        }
-        getOrdersBackup().then((items) => {
-            console.log(items);
-            if(items){
-                console.log(items.payload);
-                setBackupOrderData(items.payload.week_orders.sort(orderCompare) || []);
-                setOrderSummary(items.payload.aggregate_orders || []);
-            }else{
-                setOrderData([]);
-            }
-        });
+        // if(!fallback){
+        //     getOrders().then((items) => {
+        //         console.log(items);
+        //         if(items){
+        //             console.log(items.payload);
+        //             setOrderData(items.payload.week_orders.sort(orderCompare) || []);
+        //             setOrderSummary(items.payload.aggregate_orders || []);
+        //         }else{
+        //             setOrderData([]);
+        //         }
+        //         setLoading(false);
+        //     });
+        // }
+        // getOrdersBackup().then((items) => {
+        //     console.log(items);
+        //     if(items){
+        //         console.log(items.payload);
+        //         setBackupOrderData(items.payload.week_orders.sort(orderCompare) || []);
+        //         setOrderSummary(items.payload.aggregate_orders || []);
+        //     }else{
+        //         setOrderData([]);
+        //     }
+        // });
     }, []);
 
     useEffect(()=>{
