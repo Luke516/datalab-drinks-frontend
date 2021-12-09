@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.894f8564.chunk.css",
-    "main.js": "/static/js/main.55147735.chunk.js",
-    "main.js.map": "/static/js/main.55147735.chunk.js.map",
+    "main.css": "/static/css/main.b1ba2d1b.chunk.css",
+    "main.js": "/static/js/main.d1f15aba.chunk.js",
+    "main.js.map": "/static/js/main.d1f15aba.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e23d9efe.js",
     "runtime-main.js.map": "/static/js/runtime-main.e23d9efe.js.map",
     "static/css/2.edb10b62.chunk.css": "/static/css/2.edb10b62.chunk.css",
-    "static/js/2.937335ec.chunk.js": "/static/js/2.937335ec.chunk.js",
-    "static/js/2.937335ec.chunk.js.map": "/static/js/2.937335ec.chunk.js.map",
+    "static/js/2.a9737b9a.chunk.js": "/static/js/2.a9737b9a.chunk.js",
+    "static/js/2.a9737b9a.chunk.js.map": "/static/js/2.a9737b9a.chunk.js.map",
     "static/js/3.673d20e4.chunk.js": "/static/js/3.673d20e4.chunk.js",
     "static/js/3.673d20e4.chunk.js.map": "/static/js/3.673d20e4.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.edb10b62.chunk.css.map": "/static/css/2.edb10b62.chunk.css.map",
-    "static/css/main.894f8564.chunk.css.map": "/static/css/main.894f8564.chunk.css.map",
-    "static/js/2.937335ec.chunk.js.LICENSE.txt": "/static/js/2.937335ec.chunk.js.LICENSE.txt",
+    "static/css/main.b1ba2d1b.chunk.css.map": "/static/css/main.b1ba2d1b.chunk.css.map",
+    "static/js/2.a9737b9a.chunk.js.LICENSE.txt": "/static/js/2.a9737b9a.chunk.js.LICENSE.txt",
     "static/media/datalab-bg.c70e3884.jpg": "/static/media/datalab-bg.c70e3884.jpg",
     "static/media/datalab-logo-white.d8636724.png": "/static/media/datalab-logo-white.d8636724.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e23d9efe.js",
     "static/css/2.edb10b62.chunk.css",
-    "static/js/2.937335ec.chunk.js",
-    "static/css/main.894f8564.chunk.css",
-    "static/js/main.55147735.chunk.js"
+    "static/js/2.a9737b9a.chunk.js",
+    "static/css/main.b1ba2d1b.chunk.css",
+    "static/js/main.d1f15aba.chunk.js"
   ]
 }
