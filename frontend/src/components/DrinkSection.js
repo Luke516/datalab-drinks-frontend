@@ -7,9 +7,9 @@ import "./DrinkSection.css"
 export default function DrinkSection(props) {
 
     return(
-        <div className="my-4">
-            <h1>{props.series.series}</h1>
+        <div className="my-4" style={{position: "relative"}}>
             <div className="row card drink-section p-2">
+                <h1 className="mt-2">{props.series.series}</h1>
                 <DrinkList data={props.series.items}/>
             </div>
         </div>
