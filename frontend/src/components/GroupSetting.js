@@ -9,6 +9,7 @@ import { AppContext } from "../App";
 import "./AllDrink.css";
 import LoadingSpinner from "./LoadingSpinner";
 import styled from 'styled-components'
+import axios from 'axios';
 
 const Styles = styled.div`
   /* This is required to make the table full-width */
@@ -182,7 +183,7 @@ function Table({ columns, data }) {
 export default function GroupSetting(props) {
     const [loading, setLoading] = useState(true);
     const appContext = useContext(AppContext);
-    const { groupData } = appContext;
+    const { groupData, participantData } = appContext;
 
     let location = useLocation();
     let param = useParams();
@@ -192,6 +193,56 @@ export default function GroupSetting(props) {
     const importToDatabase = async () => {
         console.log("import QWQ!");
         console.log(groupData);
+        console.log(participantData);
+        let payload = [];
+        let dataDict = {};
+        for(let i=0; i<participantData.rows.length; i++) {
+            let row1 = participantData.rows[i];
+            if(row1["ID"]){
+                dataDict[row1["ID"]] = row1;
+            }
+        }
+        for(let i=0; i<groupData.rows.length; i++) {
+            let row2 = groupData.rows[i];
+            if(dataDict[row2["ID"]]){
+                let row1 = dataDict[row2["ID"]];
+                if (!row2["組別"]) {
+                    console.log("ERROR QWQ:");
+                    console.log(row2);
+                    continue;
+                }
+                if (row2["組別"].length < 1) {
+                    console.log("ERROR QWQ:");
+                    console.log(row2);
+                    continue;
+                }
+                payload.push(
+                    {
+                        data: row1,
+                        group: row2["組別"]
+                    }
+                )
+            }
+            else {
+                console.log("ERROR QWQ:");
+                console.log(row2);
+            }
+        }
+        console.log(payload);
+
+        for(let data of payload){
+            axios.post("http://localhost:5000/api/import", data)
+            .then((res)=> {
+                console.log(res);
+            });
+        }
+    }
+
+    const deleteTestersFromDatabase = async () => {
+        axios.post("http://localhost:5000/api/clear")
+        .then((res)=> {
+            console.log(res);
+        });
     }
 
     useEffect(() => {
@@ -213,6 +264,7 @@ export default function GroupSetting(props) {
     return (
         <React.Fragment>
             <div className="my-2">
+                <Button onClick = {()=>{deleteTestersFromDatabase()}}>(刪除現有資料)</Button>
                 <Button onClick = {()=>{importToDatabase()}}>匯入資料庫(覆寫現有資料)</Button>
             </div>
             <div /*className="container tab-content" data-aos="fade-in" data-aos-duration="300"*/ id="nav-tabContent">

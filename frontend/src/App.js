@@ -63,14 +63,14 @@ function App() {
           columns.push(header === "照片"?{
             Header: header in headerAbbrs ? headerAbbrs[header] : header,
             accessor: header, // accessor is the "key" in the data
-            // maxWidth: 70,
-            // minWidth: 70,
-            // Cell: ({ cell: { value } }) => (
-            //   <img
-            //     src={value.replace("open?id=", "uc?export=view&id=")}
-            //     width={60}
-            //   />
-            // )
+            maxWidth: 70,
+            minWidth: 70,
+            Cell: ({ cell: { value } }) => (
+              <img
+                src={value.replace("open?id=", "thumbnail?authuser=0&sz=w320&id=")}
+                width={60}
+              />
+            )
           }: {
             Header: header in headerAbbrs ? headerAbbrs[header] : header,
             accessor: header, // accessor is the "key" in the data
@@ -96,8 +96,19 @@ function App() {
         console.log(payload);
         let columns = [];
         for(let header of payload.headerValues) {
-          columns.push({
-            Header: header,
+          columns.push(header === "照片"?{
+            Header: header in headerAbbrs ? headerAbbrs[header] : header,
+            accessor: header, // accessor is the "key" in the data
+            maxWidth: 70,
+            minWidth: 70,
+            Cell: ({ cell: { value } }) => (
+              <img
+                src={value.replace("open?id=", "thumbnail?authuser=0&sz=w320&id=")}
+                width={60}
+              />
+            )
+          }: {
+            Header: header in headerAbbrs ? headerAbbrs[header] : header,
             accessor: header, // accessor is the "key" in the data
           })
         } 

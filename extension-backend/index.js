@@ -5,6 +5,48 @@ const mysql = require('mysql2/promise');
 const { fetchParticipantRowsFromSheet, fetchParticipantGroupsFromSheet } = require('./sheet');
 require('dotenv').config();
 
+const getAvatarUrl = (testerId) => {
+  let bucket = "https://flora-experiment.s3.us-west-2.amazonaws.com/avatar/";
+  let filenames = ["89.jpg", "32.png", "128.jpg", "129.jpg", "1.jpg", "10.jpeg", "100.jpg", "101.jpg", "102.jpg", "103.jpg", "104.jpg", "105.png", "106.jpg", "107.jpg", "108.png", "11.jpeg", "110.png", "111.png", "113.jpg", "114.png", "116.png", "117.png", "118.png", "119.png", "12.jpg", "120.png", "121.png", "122.png", "125.png", "126.jpeg", "127.png", "13.jpg", "14.jpeg", "15.jpg", "16.jpeg", "17.jpeg", "18.jpeg", "19.jpeg", "2.jpeg", "20.jpeg", "21.jpeg", "22.jpeg", "23.png", "24.png", "25.jpg", "26.jpg", "27.jpg", "28.jpeg", "29.jpeg", "3.jpg", "30.jpeg", "31.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpeg", "39.jpg", "4.jpeg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg", "45.jpg", "46.jpg", "47.jpg", "48.jpg", "49.jpg", "5.jpg", "50.jpg", "51.jpg", "52.jpg", "53.jpg", "54.jpg", "55.jpg", "56.jpg", "57.jpg", "58.jpg", "58.png", "59.jpg", "6.jpeg", "60.jpg", "61.jpg", "62.jpg", "63.jpg", "64.png", "65.jpg", "66.jpg", "67.jpg", "68.jpg", "69.jpg", "7.png", "70.jpg", "71.jpg", "72.jpg", "73.jpg", "75.jpg", "76.jpg", "77.jpg", "78.jpg", "79.jpg", "8.png", "80.jpg", "81.jpg", "82.jpg", "83.jpg", "84.jpg", "85.jpg", "86.jpg", "87.jpg", "88.jpg", "9.jpeg", "90.jpg", "91.jpg", "92.jpg", "93.jpg", "94.jpg", "95.jpg", "96.jpg", "97.jpg", "98.jpg", "99.jpg"];
+
+  for(filename of filenames){
+    if(filename.split(".")[0] === "" + testerId) {
+      return bucket + filename;
+    }
+  }
+
+  return "QWQ";
+}
+
+const createPartner = async (email, group, conn) => {
+  
+  let createPartnerSql = `INSERT INTO Partner (userId, partnerId, startTime, stopTime) 
+    VALUES((SELECT userId FROM User WHERE email = "${email}"), 1, FROM_UNIXTIME(0), FROM_UNIXTIME(1))`;
+
+  // console.log(createPartnerSql);
+
+  await conn.execute(createPartnerSql);
+}
+
+const createGoal = async (email, group, conn) => {
+  let createFields = ["userId", "title", "duration", "goal", "progress", "repeatType", "startedAt"];
+  let createValues = [`(SELECT userId FROM User WHERE email = "${email}")`, `"使用Fauna專注"`, 25, 8, 0, 3, `"2021-12-02 16:00:00"`];
+  if(group == "Individual Goal"){
+    createFields.push("challengeId");
+    createValues.push(3);
+  }
+  else if (group.includes("Group")){
+    createFields.push("challengeId");
+    createValues.push(4);
+  }
+  let createGoalSql = `INSERT INTO Goal (${createFields.join(",")}) 
+    VALUES(${createValues.map(val => "" + val).join(",")})`;
+
+  // console.log(createGoalSql);
+
+  await conn.execute(createGoalSql);
+}
+
 const main = async () => {
   const app = express();
   app.use(cors());
@@ -19,8 +61,34 @@ const main = async () => {
     });
   });
 
+  app.post('/api/clear', async (req, res) => {
+    var conn = await mysql.createConnection({
+      host: process.env.DBHOST,
+      user: process.env.DBUSER,
+      password: process.env.DBPASSWORD,
+      database: process.env.DB,
+      port: process.env.DBPORT
+    });
+
+    const deleteGoalSql = `DELETE FROM Goal WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
+    const deletePartnerSql = `DELETE FROM Partner WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
+    const deleteUserSql = `DELETE FROM User WHERE testerId > 0`;
+    
+    try {
+      await conn.execute(deleteGoalSql);
+      await conn.execute(deletePartnerSql);
+      await conn.execute(deleteUserSql);
+    }
+    catch(err){
+      console.log(err);
+    }
+    conn.close();
+
+    res.status(200).send({ ok: "ok" });
+  });
+
   app.post('/api/import', async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     var conn = await mysql.createConnection({
       host: process.env.DBHOST,
@@ -30,13 +98,64 @@ const main = async () => {
       port: process.env.DBPORT
     });
 
-    const importSql = ` WHERE userId = ?`;
-    try {
-      await conn.execute(importSql, [0] /* params */);
+    let {data, group} = req.body;
+    if(group == "Focus Only") {
+      let userType = 0;
+      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+      try {
+        await conn.execute(importSql);
+        await createGoal(data["信箱"], group, conn);
+      }
+      catch (err) {
+        console.log("err");
+        console.log(err);
+      }
     }
-    catch (err) {
-      console.log("err");
-      console.log(err);
+    else if(group.includes("Group")) {
+      let userType = 3;
+      let groupId = parseInt(group.split(" ")[1]) + 2;
+      const importSql = `INSERT INTO User (groupId, name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+        VALUES(${groupId}, "${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+      try {
+        await conn.execute(importSql);
+        await createGoal(data["信箱"], group, conn);
+      }
+      catch (err) {
+        console.log("err");
+        console.log(err);
+      }
+    }
+    else if (group == "Individual Goal"){
+      let userType = 1;
+      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+      try {
+        await conn.execute(importSql);
+        await createGoal(data["信箱"], group, conn);
+      }
+      catch (err) {
+        console.log("err");
+        console.log(err);
+      }
+    }
+    else if(group.includes("Match")) {
+      let userType = 2;
+      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+      try {
+        await conn.execute(importSql);
+        await createGoal(data["信箱"], group, conn);
+        await createPartner(data["信箱"], group, conn);
+      }
+      catch (err) {
+        console.log("err");
+        console.log(err);
+      }
     }
     conn.close();
 
@@ -69,6 +188,27 @@ const main = async () => {
     console.log(participantRows[0]);
     console.log(headerValues);
     // console.log(participantRows[0]["專長"]);
+
+    participantRows =  participantRows.map((row) => {
+      let payload = {};
+      for (let header of headerValues){
+        payload[header] = row[header];
+      }
+      return payload;
+    });
+    
+    let response = {
+      headerValues,
+      rows: participantRows
+    }
+    res.json(response);
+  });
+
+  app.post('/api/groups', async (req, res) => {
+    let {headerValues, rows: participantRows} =  await fetchParticipantGroupsFromSheet();
+    let {headerValues: headerValues2, rows: participantRows2} =  await fetchParticipantRowsFromSheet();
+    // console.log(participantRows[0]);
+    // console.log(headerValues);
 
     participantRows =  participantRows.map((row) => {
       let payload = {};
