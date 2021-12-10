@@ -1,12 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
-import DrinkSection from "../components/DrinkSection";
 import { useLocation, useParams } from "react-router-dom";
 import { Modal, Button, Alert } from "react-bootstrap";
 import BTable from 'react-bootstrap/Table';
 import { CSSTransition } from "react-transition-group";
 import { useTable, useRowSelect, useSortBy } from 'react-table'
 import { AppContext } from "../App";
-import "./AllDrink.css";
 import LoadingSpinner from "./LoadingSpinner";
 import styled from 'styled-components'
 import axios from 'axios';
@@ -108,24 +106,6 @@ function Table({ columns, data }) {
         useRowSelect,
         hooks => {
             hooks.visibleColumns.push(columns => [
-                // Let's make a column for selection
-                {
-                    id: 'selection',
-                    // The header can use the table's getToggleAllRowsSelectedProps method
-                    // to render a checkbox
-                    Header: ({ getToggleAllRowsSelectedProps }) => (
-                        <div>
-                            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-                        </div>
-                    ),
-                    // The cell can use the individual row's getToggleRowSelectedProps method
-                    // to the render a checkbox
-                    Cell: ({ row }) => (
-                        <div>
-                            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-                        </div>
-                    ),
-                },
                 ...columns,
             ])
         }
@@ -263,12 +243,12 @@ export default function GroupSetting(props) {
     }
     return (
         <React.Fragment>
+            <div /*className="container tab-content" data-aos="fade-in" data-aos-duration="300"*/ id="nav-tabContent">
+                <Table columns={groupData.columns} data={groupData.rows} />
+            </div>
             <div className="my-2">
                 <Button onClick = {()=>{deleteTestersFromDatabase()}}>(刪除現有資料)</Button>
                 <Button onClick = {()=>{importToDatabase()}}>匯入資料庫(覆寫現有資料)</Button>
-            </div>
-            <div /*className="container tab-content" data-aos="fade-in" data-aos-duration="300"*/ id="nav-tabContent">
-                <Table columns={groupData.columns} data={groupData.rows} />
             </div>
         </React.Fragment>
 

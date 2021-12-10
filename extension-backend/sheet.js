@@ -60,8 +60,8 @@ const fetchParticipantGroupsFromSheet = async () => {
     console.log(doc.title);
     // await doc.updateProperties({ title: 'renamed doc' });
 
-    const sheet = doc.sheetsByIndex[1]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
-    if(sheet.title !== "帳號建立") {
+    const sheet = doc.sheetsByIndex[6]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
+    if(sheet.title !== "分組名單") {
         return {};
     }
     console.log(sheet.title);
