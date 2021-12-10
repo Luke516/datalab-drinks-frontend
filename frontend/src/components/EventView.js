@@ -10,10 +10,32 @@ import "./EventView.css";
 
 export default function EventView(props) {
     const appContext = useContext(AppContext);
-    const [selectedEventDatas, setSelectedEventDatas] = useState([[{
-        eventType: "全部",
-        section: "全部"
-    }]]);
+    const [selectedEventDatas, setSelectedEventDatas] = useState([
+        [{
+            eventType: "全部",
+            section: "全部"
+        }], [
+            {
+                eventType: "StartPlanting",
+                section: "實驗組",
+                subSection: 0
+            },
+            {
+                eventType: "StartPlanting",
+                section: "實驗組",
+                subSection: 1
+            },
+            {
+                eventType: "StartPlanting",
+                section: "實驗組",
+                subSection: 2
+            },
+            {
+                eventType: "StartPlanting",
+                section: "實驗組",
+                subSection: 3
+            },
+        ]]);
     const [eventTypes, setEventTypes] = useState(["全部"]);
     const [curEventType, setCurEventType] = useState("選擇事件類型");
 
@@ -53,8 +75,8 @@ export default function EventView(props) {
             let comparedEvents = compareEventDatas;
             if(comparedEvents.length > 0){
                 let lastComparedEvent = comparedEvents[comparedEvents.length - 1];
-                if(lastComparedEvent.eventType !== curEventType &&
-                    lastComparedEvent.section !== curUserSection &&
+                if(lastComparedEvent.eventType !== curEventType ||
+                    lastComparedEvent.section !== curUserSection ||
                     lastComparedEvent.subSection !== curUserSubSection){
                         comparedEvents.push({
                             eventType: curEventType,
@@ -109,7 +131,7 @@ export default function EventView(props) {
                                     <span className="ms-2 text-muted" style={{ fontSize: "1rem" }}>使用者群組:</span>
                                     {compareEventData.section}
                                     {
-                                        compareEventData.subSection &&
+                                        (compareEventData.subSection !== undefined && compareEventData.subSection !== "")  &&
                                             <span>-{compareEventData.subSection}</span>
                                     }
                                     <span className="ms-2 text-muted" style={{ fontSize: "1rem" }}>事件類型:</span>

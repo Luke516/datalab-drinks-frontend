@@ -16,6 +16,8 @@ import axios from 'axios';
 
 import { FaTrash, FaSyncAlt, FaSearchPlus, FaSearchMinus, FaExpandAlt, FaCompressAlt } from 'react-icons/fa';
 
+const chartColors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"];
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -61,7 +63,8 @@ export default function EventChart(props) {
                     label: "subSection" in eventData ? `${eventType}/${eventData.section}/${eventData.subSection}`:
                         `${eventType}/${eventData.section}`,
                     data: res.data,
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    backgroundColor: chartColors[idx >=8 ? 0: idx],
+                    // backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 };
                 setDatasets(newDatasets.slice());
                 // setLabels([6,7,8,9]);
@@ -90,17 +93,27 @@ export default function EventChart(props) {
         }
     }, [datasets]);
 
+    const titleText = props.eventData.length === 1 ? (props.eventData[0].subSection !== "" && props.eventData[0].subSection !== undefined) ?
+    `${props.eventData[0].eventType} 事件 (${props.eventData[0].section} : ${props.eventData[0].subSection})` :
+    `${props.eventData[0].eventType} 事件 (${props.eventData[0].section} 使用者)` :
+    `事件比對圖`
+
     const options = {
         responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    precision: 0
+                }
+            }]
+        },
         plugins: {
             legend: {
                 position: 'top',
             },
             title: {
                 display: true,
-                text: props.eventData.subSection !== "" ?
-                    `${props.eventData.eventType} 事件 (${props.eventData.section} : ${props.eventData.subSection})` :
-                    `${props.eventData.eventType} 事件 (${props.eventData.section} 使用者)`
+                text: titleText
             },
         },
     };
@@ -133,7 +146,7 @@ export default function EventChart(props) {
                 </div>
                 <div>
                     <Button variant="light" className="m-2 p-1"
-                        onClick={loadChartData}
+                        onClick={()=>{setDatasets([])}}
                     >
                         <FaSyncAlt />
                     </Button>
