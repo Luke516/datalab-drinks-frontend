@@ -62,23 +62,6 @@ const Styles = styled.div`
   }
 `
 
-const IndeterminateCheckbox = React.forwardRef(
-    ({ indeterminate, ...rest }, ref) => {
-      const defaultRef = React.useRef()
-      const resolvedRef = ref || defaultRef
-  
-      React.useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate
-      }, [resolvedRef, indeterminate])
-  
-      return (
-        <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
-        </>
-      )
-    }
-)
-
 function Table({ columns, data }) {
     // Use the state and functions returned from useTable to build your UI
     const {
@@ -171,58 +154,60 @@ export default function GroupSetting(props) {
     const nodeRef = React.useRef(null)
 
     const importToDatabase = async () => {
-        console.log("import QWQ!");
-        console.log(groupData);
-        console.log(participantData);
-        let payload = [];
-        let dataDict = {};
-        for(let i=0; i<participantData.rows.length; i++) {
-            let row1 = participantData.rows[i];
-            if(row1["ID"]){
-                dataDict[row1["ID"]] = row1;
-            }
-        }
-        for(let i=0; i<groupData.rows.length; i++) {
-            let row2 = groupData.rows[i];
-            if(dataDict[row2["ID"]]){
-                let row1 = dataDict[row2["ID"]];
-                if (!row2["組別"]) {
-                    console.log("ERROR QWQ:");
-                    console.log(row2);
-                    continue;
-                }
-                if (row2["組別"].length < 1) {
-                    console.log("ERROR QWQ:");
-                    console.log(row2);
-                    continue;
-                }
-                payload.push(
-                    {
-                        data: row1,
-                        group: row2["組別"]
-                    }
-                )
-            }
-            else {
-                console.log("ERROR QWQ:");
-                console.log(row2);
-            }
-        }
-        console.log(payload);
+        alert("暫不開放");
+        // console.log("import QWQ!");
+        // console.log(groupData);
+        // console.log(participantData);
+        // let payload = [];
+        // let dataDict = {};
+        // for(let i=0; i<participantData.rows.length; i++) {
+        //     let row1 = participantData.rows[i];
+        //     if(row1["ID"]){
+        //         dataDict[row1["ID"]] = row1;
+        //     }
+        // }
+        // for(let i=0; i<groupData.rows.length; i++) {
+        //     let row2 = groupData.rows[i];
+        //     if(dataDict[row2["ID"]]){
+        //         let row1 = dataDict[row2["ID"]];
+        //         if (!row2["組別"]) {
+        //             console.log("ERROR QWQ:");
+        //             console.log(row2);
+        //             continue;
+        //         }
+        //         if (row2["組別"].length < 1) {
+        //             console.log("ERROR QWQ:");
+        //             console.log(row2);
+        //             continue;
+        //         }
+        //         payload.push(
+        //             {
+        //                 data: row1,
+        //                 group: row2["組別"]
+        //             }
+        //         )
+        //     }
+        //     else {
+        //         console.log("ERROR QWQ:");
+        //         console.log(row2);
+        //     }
+        // }
+        // console.log(payload);
 
-        for(let data of payload){
-            axios.post("http://localhost:5000/api/import", data)
-            .then((res)=> {
-                console.log(res);
-            });
-        }
+        // for(let data of payload){
+        //     axios.post("http://localhost:5000/api/import", data)
+        //     .then((res)=> {
+        //         console.log(res);
+        //     });
+        // }
     }
 
     const deleteTestersFromDatabase = async () => {
-        axios.post("http://localhost:5000/api/clear")
-        .then((res)=> {
-            console.log(res);
-        });
+        alert("暫不開放");
+        // axios.post("http://localhost:5000/api/clear")
+        // .then((res)=> {
+        //     console.log(res);
+        // });
     }
 
     useEffect(() => {

@@ -70,18 +70,18 @@ const main = async () => {
       port: process.env.DBPORT
     });
 
-    const deleteGoalSql = `DELETE FROM Goal WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
-    const deletePartnerSql = `DELETE FROM Partner WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
-    const deleteUserSql = `DELETE FROM User WHERE testerId > 0`;
+    // const deleteGoalSql = `DELETE FROM Goal WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
+    // const deletePartnerSql = `DELETE FROM Partner WHERE userId IN (SELECT userId FROM User WHERE testerId > 0)`;
+    // const deleteUserSql = `DELETE FROM User WHERE testerId > 0`;
     
-    try {
-      await conn.execute(deleteGoalSql);
-      await conn.execute(deletePartnerSql);
-      await conn.execute(deleteUserSql);
-    }
-    catch(err){
-      console.log(err);
-    }
+    // try {
+    //   await conn.execute(deleteGoalSql);
+    //   await conn.execute(deletePartnerSql);
+    //   await conn.execute(deleteUserSql);
+    // }
+    // catch(err){
+    //   console.log(err);
+    // }
     conn.close();
 
     res.status(200).send({ ok: "ok" });
@@ -98,65 +98,65 @@ const main = async () => {
       port: process.env.DBPORT
     });
 
-    let {data, group} = req.body;
-    if(group == "Focus Only") {
-      let userType = 0;
-      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
-        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
-        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
-      try {
-        await conn.execute(importSql);
-        await createGoal(data["信箱"], group, conn);
-      }
-      catch (err) {
-        console.log("err");
-        console.log(err);
-      }
-    }
-    else if(group.includes("Group")) {
-      let userType = 3;
-      let groupId = parseInt(group.split(" ")[1]) + 2;
-      const importSql = `INSERT INTO User (groupId, name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
-        VALUES(${groupId}, "${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
-        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
-      try {
-        await conn.execute(importSql);
-        await createGoal(data["信箱"], group, conn);
-      }
-      catch (err) {
-        console.log("err");
-        console.log(err);
-      }
-    }
-    else if (group == "Individual Goal"){
-      let userType = 1;
-      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
-        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
-        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
-      try {
-        await conn.execute(importSql);
-        await createGoal(data["信箱"], group, conn);
-      }
-      catch (err) {
-        console.log("err");
-        console.log(err);
-      }
-    }
-    else if(group.includes("Match")) {
-      let userType = 2;
-      const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
-        VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
-        "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
-      try {
-        await conn.execute(importSql);
-        await createGoal(data["信箱"], group, conn);
-        await createPartner(data["信箱"], group, conn);
-      }
-      catch (err) {
-        console.log("err");
-        console.log(err);
-      }
-    }
+    // let {data, group} = req.body;
+    // if(group == "Focus Only") {
+    //   let userType = 0;
+    //   const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+    //     VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+    //     "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+    //   try {
+    //     await conn.execute(importSql);
+    //     await createGoal(data["信箱"], group, conn);
+    //   }
+    //   catch (err) {
+    //     console.log("err");
+    //     console.log(err);
+    //   }
+    // }
+    // else if(group.includes("Group")) {
+    //   let userType = 3;
+    //   let groupId = parseInt(group.split(" ")[1]) + 2;
+    //   const importSql = `INSERT INTO User (groupId, name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+    //     VALUES(${groupId}, "${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+    //     "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+    //   try {
+    //     await conn.execute(importSql);
+    //     await createGoal(data["信箱"], group, conn);
+    //   }
+    //   catch (err) {
+    //     console.log("err");
+    //     console.log(err);
+    //   }
+    // }
+    // else if (group == "Individual Goal"){
+    //   let userType = 1;
+    //   const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+    //     VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+    //     "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+    //   try {
+    //     await conn.execute(importSql);
+    //     await createGoal(data["信箱"], group, conn);
+    //   }
+    //   catch (err) {
+    //     console.log("err");
+    //     console.log(err);
+    //   }
+    // }
+    // else if(group.includes("Match")) {
+    //   let userType = 2;
+    //   const importSql = `INSERT INTO User (name, email, password, gender, school, department, expertise, habit, intro, avatarUrl, testerId, userType)
+    //     VALUES("${data["姓名"]}", "${data["信箱"]}", "${data["手機號碼"]}", "${data["性別"]}", "${data["學校"]}", "${data["科系"]}",
+    //     "${data["專長"]}", "${data["興趣"]}", "哈囉我是${data["姓名"]}", "${getAvatarUrl(data["ID"])}", ${data["ID"]}, ${userType})`;
+    //   try {
+    //     await conn.execute(importSql);
+    //     await createGoal(data["信箱"], group, conn);
+    //     await createPartner(data["信箱"], group, conn);
+    //   }
+    //   catch (err) {
+    //     console.log("err");
+    //     console.log(err);
+    //   }
+    // }
     conn.close();
 
     res.json(req.body);
