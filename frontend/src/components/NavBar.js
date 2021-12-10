@@ -67,14 +67,14 @@ export default function NavBar(props) {
                                 資料庫功能
                             </Link>
                         </div>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
-                        <div className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[1] == "orders"? " " : "")}>
-                            <Link className="nav-link" to={`/groups`}>
+                        <div className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[1] == "events"? "selected" : "")}>
+                            <Link className="nav-link" to={`/events`}>
                                 事件
                             </Link>
                         </div>
-                    </li> */}
+                    </li> 
                 </ul>
             </div>
         </nav>

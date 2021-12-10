@@ -19,7 +19,7 @@ const fetchParticipantRowsFromSheet = async () => {
     console.log(doc.title);
     // await doc.updateProperties({ title: 'renamed doc' });
 
-    const sheet = doc.sheetsByIndex[7]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
+    const sheet = doc.sheetsByIndex[5]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
     if(sheet.title !== "整理名單") {
         return {};
     }

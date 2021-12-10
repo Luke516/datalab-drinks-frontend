@@ -225,6 +225,147 @@ const main = async () => {
     res.json(response);
   });
 
+  app.get('/api/events/sections', async (req, res) => {
+    let userSection = "全部";
+    if(req.query.type) {
+      console.log(req.query.type);
+      userSection = req.query.type;
+    }
+    if(userSection == "全部"){
+      res.status(200).send([]);
+    }
+
+    var conn = await mysql.createConnection({
+      host: process.env.DBHOST,
+      user: process.env.DBUSER,
+      password: process.env.DBPASSWORD,
+      database: process.env.DB,
+      port: process.env.DBPORT
+    });
+
+    let payload = [];
+
+    let getSubSectionsSql = 
+      userSection == "使用者"? `SELECT \`name\` AS Val FROM flora_test.User WHERE testerId > 0 GROUP BY \`name\` ORDER BY \`userId\` `:
+      userSection == "實驗組"? `SELECT \`userType\` AS Val FROM flora_test.User WHERE testerId > 0 GROUP BY \`userType\` ORDER BY \`userType\` `: 
+      userSection == "小組"? `SELECT \`groupId\` AS Val FROM flora_test.User WHERE testerId > 0 AND groupId > 0 GROUP BY \`groupId\` ORDER BY \`groupId\` `: 
+      `` 
+    try {
+      let [rows, fields] = await conn.execute(getSubSectionsSql);
+      if(rows.length === 0){
+          throw `No Event Types.`;
+      }
+      for(let row of rows) {
+        payload.push(row["Val"]);
+      }
+    }
+    catch(err){
+      console.log(err);
+      payload = [];
+    }
+
+    conn.close();
+    res.status(200).send(payload);
+  });
+
+  app.get('/api/events/types', async (req, res) => {
+    var conn = await mysql.createConnection({
+      host: process.env.DBHOST,
+      user: process.env.DBUSER,
+      password: process.env.DBPASSWORD,
+      database: process.env.DB,
+      port: process.env.DBPORT
+    });
+
+    let payload = [];
+
+    let getEventTypes = `SELECT \`key\` FROM flora_test.Log GROUP BY \`key\` ORDER BY \`key\` `;
+    try {
+      let [rows, fields] = await conn.execute(getEventTypes);
+      if(rows.length === 0){
+          throw `No Event Types.`;
+      }
+      for(let row of rows) {
+        payload.push(row["key"]);
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
+
+    conn.close();
+    res.status(200).send(payload);
+  });
+
+  app.get('/api/events', async (req, res) => {
+    let eventType = "All";
+    let section = "All";
+    let subSection = "";
+    let metric = "day";
+    if(req.query.event) {
+      console.log(req.query.event);
+      eventType = req.query.event;
+    }
+    if(req.query.section) {
+      console.log(req.query.section);
+      section = req.query.section;
+    }
+    if(req.query.subSection) {
+      console.log(req.query.subSection);
+      subSection = req.query.subSection;
+    }
+    if(req.query.metric) {
+      console.log(req.query.metric);
+      metric = req.query.metric;
+    }
+    var conn = await mysql.createConnection({
+      host: process.env.DBHOST,
+      user: process.env.DBUSER,
+      password: process.env.DBPASSWORD,
+      database: process.env.DB,
+      port: process.env.DBPORT
+    });
+
+    let payload = {};
+
+    let getLogSql = `SELECT COUNT(logId) as logCount, \`timestamp\`,
+        DAY(CONVERT_TZ(\`timestamp\`, '+00:00','+08:00')) as logDay,
+        HOUR(CONVERT_TZ(\`timestamp\`, '+00:00','+08:00')) as logHour 
+        FROM Log WHERE \`timestamp\` > "2021-12-05 16:00:00.000000"`
+    if(eventType != "All" && eventType != "all"){
+      getLogSql += ` AND \`key\`= "${eventType}" `
+    }
+
+    if(section == "小組") {
+      getLogSql += ` AND userId IN (SELECT userId FROM User WHERE groupId=${subSection})`
+    }
+    else if(section == "實驗組") {
+      getLogSql += ` AND userId IN (SELECT userId FROM User WHERE userType=${subSection})`
+    }
+    else if(section == "使用者") {
+      getLogSql += ` AND userId = (SELECT userId FROM User WHERE name="${subSection}")`
+    }
+
+    getLogSql += (metric == "day") ? ` GROUP BY logDay`: ` GROUP BY logDay, logHour`;
+    console.log(getLogSql);
+    try {
+      let [rows, fields] = await conn.execute(getLogSql);
+      if(rows.length === 0){
+          throw `No Log.`;
+      }
+      for(let row of rows) {
+        if(metric == "day") payload["12/" + row["logDay"]] = row["logCount"];
+        else payload[`12/${row["logDay"]}(${row["logHour"]})`] = row["logCount"];
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
+
+    conn.close();
+    res.status(200).send(payload);
+  });
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/build/index.html'));
   });
