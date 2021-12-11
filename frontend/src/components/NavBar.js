@@ -71,7 +71,7 @@ export default function NavBar(props) {
                     <li className="nav-item">
                         <div className={"nav-link-background mx-lg-0 mx-sm-3 " + (path[1] == "events"? "selected" : "")}>
                             <Link className="nav-link" to={`/events`}>
-                                事件
+                                事件圖表
                             </Link>
                         </div>
                     </li> 

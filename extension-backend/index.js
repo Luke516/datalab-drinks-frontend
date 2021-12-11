@@ -302,6 +302,9 @@ const main = async () => {
     let section = "All";
     let subSection = "";
     let metric = "day";
+    let start = -1;
+    let end = -1;
+    let groupFunc = "COUNT";
     if(req.query.event) {
       console.log(req.query.event);
       eventType = req.query.event;
@@ -318,6 +321,18 @@ const main = async () => {
       console.log(req.query.metric);
       metric = req.query.metric;
     }
+    if(req.query.start) {
+      console.log(req.query.start);
+      start = parseInt(req.query.start);
+    }
+    if(req.query.end) {
+      console.log(req.query.end);
+      end = parseInt(req.query.end);
+    }
+    if(req.query.groupFunc) {
+      console.log(req.query.groupFunc);
+      groupFunc = req.query.groupFunc;
+    }
     var conn = await mysql.createConnection({
       host: process.env.DBHOST,
       user: process.env.DBUSER,
@@ -327,8 +342,18 @@ const main = async () => {
     });
 
     let payload = {};
+    if(groupFunc == "GROUP") {
+      payload = {
+        type: "grouped",
+        data: {}
+      }
+    }
 
-    let getLogSql = `SELECT COUNT(logId) as logCount, \`timestamp\`,
+    let getLogSql = (groupFunc == "SUM") ? `SELECT SUM( CAST(stringVal AS UNSIGNED) ) as logCount,`:
+      (groupFunc == "AVG") ? `SELECT AVG( CAST(stringVal AS UNSIGNED) ) as logCount,`:
+      `SELECT COUNT(stringVal) as logCount,`
+
+    getLogSql += ` \`timestamp\`, \`stringVal\`,
         DAY(CONVERT_TZ(\`timestamp\`, '+00:00','+08:00')) as logDay,
         HOUR(CONVERT_TZ(\`timestamp\`, '+00:00','+08:00')) as logHour 
         FROM Log WHERE \`timestamp\` > "2021-12-05 16:00:00.000000"`
@@ -340,13 +365,23 @@ const main = async () => {
       getLogSql += ` AND userId IN (SELECT userId FROM User WHERE groupId=${subSection})`
     }
     else if(section == "實驗組") {
-      getLogSql += ` AND userId IN (SELECT userId FROM User WHERE userType=${subSection})`
+      getLogSql += ` AND userId IN (SELECT userId FROM User WHERE userType=${subSection} AND testerId > 0)`
     }
     else if(section == "使用者") {
       getLogSql += ` AND userId = (SELECT userId FROM User WHERE name="${subSection}")`
     }
+    else {
+      getLogSql += ` AND userId IN (SELECT userId FROM User WHERE testerId > 0)`
+    }
 
     getLogSql += (metric == "day") ? ` GROUP BY logDay`: ` GROUP BY logDay, logHour`;
+    if(groupFunc == "GROUP") {
+      getLogSql += ", stringVal"
+    }
+    if(start >= 0 && end >= 0 && end >= start) {
+      getLogSql += ` HAVING logDay >= ${start + 6} AND logDay <= ${end + 6}`
+    }
+
     console.log(getLogSql);
     try {
       let [rows, fields] = await conn.execute(getLogSql);
@@ -354,8 +389,17 @@ const main = async () => {
           throw `No Log.`;
       }
       for(let row of rows) {
-        if(metric == "day") payload["12/" + row["logDay"]] = row["logCount"];
-        else payload[`12/${row["logDay"]}(${row["logHour"]})`] = row["logCount"];
+        if(groupFunc == "GROUP") {
+          if(! (row["stringVal"] in payload.data)) {
+            payload.data[row["stringVal"]] = {};
+          }
+          if(metric == "day") payload.data[row["stringVal"]]["12/" + row["logDay"]] = row["logCount"];
+          else payload.data[row["stringVal"]][`12/${row["logDay"]}(${row["logHour"]})`] = row["logCount"];
+        }
+        else {
+          if(metric == "day") payload["12/" + row["logDay"]] = row["logCount"];
+          else payload[`12/${row["logDay"]}(${row["logHour"]})`] = row["logCount"];
+        }
       }
     }
     catch(err){
