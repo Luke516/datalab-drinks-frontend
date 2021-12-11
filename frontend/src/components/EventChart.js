@@ -21,7 +21,9 @@ import {
 } from 'react-icons/fa';
 import DropdownItem from '@restart/ui/esm/DropdownItem';
 
-const chartColors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"];
+const chartColors = ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7", 
+"#e60049", "#0bb4ff", "#50e991", "#e6d800", "#9b19f5", "#ffa300", "#dc0ab4", "#b3d4ff", "#00bfa0",
+"#b30000", "#7c1158", "#4421af", "#1a53ff", "#0d88e6", "#00b7c7", "#5ad45a", "#8be04e", "#ebdc78"];
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Button
@@ -95,8 +97,8 @@ export default function EventChart(props) {
                         label: "subSection" in eventData ? `${eventType}/${eventData.section}/${eventData.subSection}` :
                             `${eventType}/${eventData.section}`,
                         data: res.data,
-                        backgroundColor: chartColors[idx >= 8 ? 0 : idx],
-                        borderColor: chartColors[idx >= 8 ? 0 : idx],
+                        backgroundColor: chartColors[idx >= chartColors.length ? 0 : idx],
+                        borderColor: chartColors[idx >= chartColors.length? 0 : idx],
                     };
                     setDatasets(newDatasets.slice());
                 }
@@ -107,8 +109,8 @@ export default function EventChart(props) {
                         newDatasets.push({
                             label: eventVal,
                             data: res.data.data[eventVal],
-                            backgroundColor: chartColors[count >= 8 ? 0 : count],
-                            borderColor: chartColors[idx >= 8 ? 0 : idx],
+                            backgroundColor: chartColors[count >= chartColors.length ? 0 : count],
+                            borderColor: chartColors[idx >= chartColors.length ? 0 : idx],
                         });
                         count ++;
                     }
