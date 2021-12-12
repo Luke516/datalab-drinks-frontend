@@ -1,7 +1,7 @@
 import {menu} from "./menu-backup";
 
 // export const serverBaseURL = "http://localhost:5000/v1";
-export const serverBaseURL = "http://shwu16.cs.nthu.edu.tw:5002/v2";
+export const serverBaseURL = "http://3.37.201.24:5002/v2";
 export const backupServerBaseURL = "http://datalab-drinks.herokuapp.com/api";
 
 export function getMenu() {
