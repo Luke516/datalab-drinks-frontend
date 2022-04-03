@@ -21,6 +21,7 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 import poring from './images/poring-xmas-unscreen.gif';
 
 export const AppContext = React.createContext();
+const snowTheme = false;
 
 function App() {
   const [drinkData, setDrinkData] = useState(menu);
@@ -62,6 +63,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if(!snowTheme) return;
     if (showBackground) {
       (function () {
         var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -243,7 +245,10 @@ function App() {
           </ul>
           <div className="d-flex flex-row">
             <p className="mb-0">Designed and built with all the love in the world by the <a href="http://www.cs.nthu.edu.tw/~shwu/">Datalab</a> with the help of <a href="https://www.camacafe.com/">cama coffee</a>(03)571-1500.</p>
-            <img src={poring} />
+            {
+              snowTheme &&
+              <img src={poring} />
+            }
           </div>
         </div>
       </footer>
