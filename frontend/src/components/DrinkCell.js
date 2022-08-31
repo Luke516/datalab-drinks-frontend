@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './DrinkCell.css';
 import OrderCollpase from "./OrderCollapse";
 
 export default function DrinkCell(props) {

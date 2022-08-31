@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import './NavBar.css'
 import dataLabLogo from '../images/datalab-logo-white.png'
 import logoBgImg from '../images/datalab-bg.jpg';
 

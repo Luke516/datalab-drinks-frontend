@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import DrinkSection from "../components/DrinkSection";
-import { useLocation, useParams } from "react-router-dom";
+// import { useLocation, useParams } from "react-router-dom"; QWQ
+import { useRouter } from "next/router";
 import { Modal, Button, Alert } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
 import { AppContext } from "../App";
-import "./AllDrink.css";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function AllDrinks(props) {

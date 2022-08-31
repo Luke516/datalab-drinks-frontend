@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DrinkList from "../components/DrinkList";
 import DrinkCell from "../components/DrinkList";
 import { getMenu } from "../services/api";
-import "./DrinkSection.css"
 
 export default function DrinkSection(props) {
 

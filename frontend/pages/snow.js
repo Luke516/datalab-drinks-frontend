@@ -1,15 +1,5 @@
-import "./main.scss";
-import "./App.css";
-import "animate.css";
+
 import React, { Suspense, useEffect, useState, useCallback } from 'react';
-import {
-  BrowserRouter as Router,
-  useRouteMatch,
-  Route,
-  Switch,
-  Link,
-  Redirect
-} from "react-router-dom";
 import AllDrinks from "../src/components/AllDrinks";
 import NavBar from "../src/components/NavBar";
 import { getMenu } from "../src/services/api";
@@ -17,7 +7,6 @@ import OrderList from "../src/components/OrderList";
 import { menu } from "../src/services/menu-backup";
 
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
 import poring from './images/poring-xmas-unscreen.gif';
 
 export const AppContext = React.createContext();
