@@ -29,3 +29,5 @@ package-lock.json
 *.icloud
 
 */.env
+
+.next

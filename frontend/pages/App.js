@@ -10,11 +10,11 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import AllDrinks from "./components/AllDrinks";
-import NavBar from "./components/NavBar";
-import { getMenu } from "./services/api";
-import OrderList from "./components/OrderList";
-import { menu } from "./services/menu-backup";
+import AllDrinks from "../src/components/AllDrinks";
+import NavBar from "../src/components/NavBar";
+import { getMenu } from "../src/services/api";
+import OrderList from "../src/components/OrderList";
+import { menu } from "../src/services/menu-backup";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
