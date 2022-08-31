@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "workspaces": ["frontend", "extension-backend"],
+    "scripts": {
+        "start": "node extension-backend/index.js"
+      }
+  }
