@@ -30,20 +30,7 @@ export default function Orders(props) {
     }
 
     useEffect(() => {
-        if(!fallback){
-            getOrders().then((items) => {
-                console.log(items);
-                if(items){
-                    console.log(items.payload);
-                    setOrderData(items.payload.week_orders.sort(orderCompare) || []);
-                    setOrderSummary(items.payload.aggregate_orders || []);
-                }else{
-                    setOrderData([]);
-                }
-                setLoading(false);
-            });
-        }
-        getOrdersBackup().then((items) => {
+        getOrders().then((items) => {
             console.log(items);
             if(items){
                 console.log(items.payload);

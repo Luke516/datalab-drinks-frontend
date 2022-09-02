@@ -30,7 +30,7 @@ export default function OrderSubmitForm(props) {
             return;
         }
         localStorage.setItem('name', name);
-        (fallback ? submitOrderBackUp :submitOrder)({
+        (fallback ? submitOrder :submitOrder)({
             name,
             id: props.data.item_id,
             size,
