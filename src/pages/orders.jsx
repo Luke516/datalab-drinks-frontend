@@ -40,14 +40,14 @@ export default function Orders(props) {
             }
             setTimeout(()=>{
                 if(window._jf) window._jf.flush();
-            }, 4500)
+            }, 200)
         });
     }, []);
 
     useEffect(()=>{
         setTimeout(()=>{
             if(window._jf) window._jf.flush();
-        }, 4500)
+        }, 200)
     }, []);
 
     return(

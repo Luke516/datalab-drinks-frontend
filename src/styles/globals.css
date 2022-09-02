@@ -24,3 +24,13 @@ a {
     background: black;
   }
 }
+
+body { 
+  font-family: "jf-jinxuanlatte" !important;
+  caret-color: transparent;
+  font-size: 1.1rem !important;
+}
+
+span {
+  font-size: 1.1rem;
+}

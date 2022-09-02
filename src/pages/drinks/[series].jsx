@@ -23,7 +23,7 @@ export default function Home() {
 	useEffect(() => {
 		setTimeout(() => {
 			if (window._jf) window._jf.flush();
-		}, 1500)
+		}, 200)
 	}, []);
 
 	return (
