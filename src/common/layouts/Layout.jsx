@@ -41,7 +41,7 @@ export default function Layout({
 					key="description"
 				/>
 				{/* TODO? */}
-				<link href='//fonts.googleapis.com/css?family=Alegreya:400|Alegreya:700|Arapey:400|Vollkorn:400|Alegreya:700' rel='stylesheet' type='text/css' />
+				{/* <link href='//fonts.googleapis.com/css?family=Alegreya:400|Alegreya:700|Arapey:400|Vollkorn:400|Alegreya:700' rel='stylesheet' type='text/css' /> */}
 			</Head>
 			{/* TODO */}
 			<Script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js" />
