@@ -1,7 +1,7 @@
 
 
 
-export default () => {
+export default function Footer (){
     return <footer className="bd-footer p-3 mt-5 text-center text-sm-start" style={{position: "relative"}}>
     <div className="container">
       <ul className="bd-footer-links ps-0 mb-3">

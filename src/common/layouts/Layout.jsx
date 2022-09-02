@@ -20,7 +20,7 @@ export default function Layout({
 			// backgroundSize: "cover",
 			filter: "blur(8px)"
 		}}>
-			<Image src={backgroundImageUrl} /*TODO: placeholder="blur"*/  layout="fill" objectFit="cover"/>
+			<Image alt="background" src={backgroundImageUrl} /*TODO: placeholder="blur"*/  layout="fill" objectFit="cover"/>
 		</div> :
 		<></>
 	return (

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import styles from "./NavBar.module.css";
 
-export default ({ item: navItemKey, link }) => {
+export default function NavBarItem ({ item: navItemKey, link }){
     const router = useRouter();
     const selected = navItemKey == "path[2]"; //TODO
 

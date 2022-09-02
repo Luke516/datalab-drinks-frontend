@@ -20,7 +20,7 @@ export default function NavBar(props) {
         <nav id={styles["nav-bar"]} className="navbar navbar-light navbar-expand-md px-1 py-0" role="tablist">
             <div id={styles["datalab-drink-logo-background"]} className={"navbar-brand py-2 " + styles["nav-logo-background"]}>
                 <div id={styles["datalab-drink-logo"]}>
-                    <Image src={dataLabLogo} height="46" width="176" objectFit="contain" />
+                    <Image alt="logo" src={dataLabLogo} height="46" width="176" objectFit="contain" />
                 </div>
             </div>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
