@@ -1,0 +1,13 @@
+
+.app-layout {
+    min-height: 100vh;
+}
+
+.app-layout > .content {
+    display: flex;
+    flex-grow: 1;
+}
+
+.app-layout > .footer {
+    display: flex;
+}

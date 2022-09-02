@@ -2,6 +2,10 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next';
 import Image from "next/image";
+import NavBar from "../components/nav/NavBar";
+import Footer from "../components/nav/Footer";
+
+import styles from "./Layout.module.css";
 
 export default function Layout({
 	children,
@@ -20,7 +24,7 @@ export default function Layout({
 			// backgroundSize: "cover",
 			filter: "blur(8px)"
 		}}>
-			<Image alt="background" src={backgroundImageUrl} /*TODO: placeholder="blur"*/  layout="fill" objectFit="cover"/>
+			<Image alt="background" src={backgroundImageUrl} /*TODO: placeholder="blur"*/ layout="fill" objectFit="cover" />
 		</div> :
 		<></>
 	return (
@@ -36,25 +40,16 @@ export default function Layout({
 					key="description"
 				/>
 			</Head>
-			{backgroundDiv}
-			{/*　TODO <header>
-                <nav>
-                    <Link href="/">
-                        <a>Home</a>
-                    </Link>{' '}
-                    |
-                    <Link href="/about">
-                        <a>About</a>
-                    </Link>{' '}
-                    |
-                    <Link href="/contact">
-                        <a>Contact</a>
-                    </Link>
-                </nav>
-            </header> */}
-
-			{children}
-			{/*  TODO　<footer>{'I`m here to stay'}</footer> */}
+			<div className={styles["app-layout"] + " d-flex flex-column"}>
+				<NavBar />
+				{backgroundDiv}
+				<div className={styles["content"]}>
+					{children}
+				</div>
+				<div className={styles["footer"]}>
+					<Footer />
+				</div>
+			</div>
 		</>
 	)
 }

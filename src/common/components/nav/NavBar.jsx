@@ -20,7 +20,7 @@ export default function NavBar(props) {
         <nav id={styles["nav-bar"]} className="navbar navbar-light navbar-expand-md px-1 py-0" role="tablist">
             <div id={styles["datalab-drink-logo-background"]} className={"navbar-brand py-2 " + styles["nav-logo-background"]}>
                 <div id={styles["datalab-drink-logo"]}>
-                    <Image alt="logo" src={dataLabLogo} height="46" width="176" objectFit="contain" />
+                    <Image alt="logo" src={dataLabLogo} height="42" width="170" objectFit="contain" />
                 </div>
             </div>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@ export default function NavBar(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <NavBarItem item="All drinks" link="/drinks/all"/>
+                    <NavBarItem item="全部飲料" link="/drinks/all"/>
                     {drinkData && drinkData.menu &&
                         drinkData.menu.map((series, key) => {
                             return (
@@ -43,7 +43,7 @@ export default function NavBar(props) {
                             )
                         })
                     }
-                    <NavBarItem item="Orders" link="/orders"/>
+                    <NavBarItem item="訂購紀錄" link="/orders"/>
                     {/* TODO <li className="nav-item">
                         <div className={"nav-link-background mx-lg-0 mx-sm-3" + (path[2] == "all"? " selected" : "")}>
                             <Link className="nav-link" to={`/drinks/all`}>

@@ -14,20 +14,20 @@ export default function Home() {
 
 	return (
 		<Layout backgroundImageUrl={"https://i.imgur.com/SDLzr35.jpg"}>
-		<div>
-			{/* {`${JSON.stringify(router.query)}`} */}
-			{drinkData && drinkData.menu &&
-                drinkData.menu.map((series, key) => {
-                    return (
-                        (curSeries == key || curSeries == "all")?
-                        <div key={key} className={"tab-panefadeactiveshow"} id={"drink" + key} role="tabpanel" aria-labelledby={`drink-${key}-tab`}>
-                            <DrinkSection series={series} />
-                        </div>:
-                        <div key={key}></div>
-                    )
-                })
-            }
-		</div>
+			<div className="container tab-content" data-aos="fade-in" data-aos-duration="300" id="nav-tabContent">
+				{/* {`${JSON.stringify(router.query)}`} */}
+				{drinkData && drinkData.menu &&
+					drinkData.menu.map((series, key) => {
+						return (
+							(curSeries == key || curSeries == "all") ?
+								<div key={key} className={"tab-panefadeactiveshow"} id={"drink" + key} role="tabpanel" aria-labelledby={`drink-${key}-tab`}>
+									<DrinkSection series={series} />
+								</div> :
+								<div key={key}></div>
+						)
+					})
+				}
+			</div>
 		</Layout>
 	)
 }
@@ -57,7 +57,7 @@ export async function getStaticPaths() {
 				params: { series: "1" },
 				locale: "zh",
 			},
-			
+
 			{
 				params: { series: "all" },
 				locale: "en",

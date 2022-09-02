@@ -2,9 +2,7 @@
 import { appWithTranslation } from "next-i18next";
 import { SSRProvider } from 'react-bootstrap';
 import { AppContextProvider } from "../common/contexts/AppContext";
-
-import Footer from "../common/components/nav/Footer"
-import NavBar from "../common/components/nav/NavBar";
+import Script from "next/script";
 
 import "../styles/globals.css"
 import  "../styles/main.scss";
@@ -12,10 +10,9 @@ import  "../styles/main.scss";
 function MyApp({ Component, pageProps }) {
   return <SSRProvider>
     <AppContextProvider>
-      <NavBar />
       <Component {...pageProps} />
-      <Footer />
     </AppContextProvider>
+    <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"/>
   </SSRProvider>
 }
 
@@ -44,6 +41,7 @@ export default appWithTranslation(MyApp);
 // import { SSRProvider } from 'react-bootstrap';
 // import MyFooter from '../components/MyFooter';
 
+// TODO
 // function MyApp({ Component, pageProps }) {
 //   useEffect(() => {
 //     TagManager.initialize({ gtmId: 'GTM-MRRTLKB' });

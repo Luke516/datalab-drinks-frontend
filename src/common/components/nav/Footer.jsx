@@ -1,8 +1,11 @@
 
-
+import styles from "./Footer.module.css";
 
 export default function Footer (){
-    return <footer className="bd-footer p-3 mt-5 text-center text-sm-start" style={{position: "relative"}}>
+    return <footer className={"bd-footer p-3 mt-5 text-center text-sm-start " + styles["sticky-footer"]} style={{
+      // position: "relative",
+      backgroundColor: "rgba(255,255,255,0.4)"
+      }}>
     <div className="container">
       <ul className="bd-footer-links ps-0 mb-3">
         <li className="d-inline-block"><a href="https://github.com/jackraken/datalab-drinks-frontend">GitHub</a></li>

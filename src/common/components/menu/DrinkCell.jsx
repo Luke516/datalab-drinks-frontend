@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import OrderCollpase from "./OrderCollapse";
+import OrderSubmitForm from "./OrderSubmitForm";
 
 export default function DrinkCell(props) {
     const [showModal, setShowModal] = useState(false);
@@ -20,8 +20,7 @@ export default function DrinkCell(props) {
                     </div>
                 </div>
             </div>
-            {/* TODO */}
-            {/* <OrderCollpase data={props.data} /> */}
+            <OrderSubmitForm data={props.data} />
         </li>
     )
 }

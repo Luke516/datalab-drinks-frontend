@@ -6,14 +6,14 @@ import styles from "./NavBar.module.css";
 
 export default function NavBarItem ({ item: navItemKey, link }){
     const router = useRouter();
-    const selected = navItemKey == "path[2]"; //TODO
+    const selected = link == router.asPath; //TODO
 
     const { t } = useTranslation('common');
 
     return (
         <li key={navItemKey} className="nav-item">
             {/* TODO: better class names */}
-            <div className={styles["nav-link-background"] + " mx-lg-0 mx-sm-3 " + (selected ? " selected" : "")}>
+            <div className={styles["nav-link-background"] + " mx-lg-0 mx-sm-3 " + (selected ? styles["selected"] : "")}>
                 <Link href={link}>
                     <a className={styles["nav-link"]} >
                         {t(navItemKey)}
