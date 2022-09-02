@@ -39,6 +39,9 @@ export default function Layout({
 					content={t(description)}
 					key="description"
 				/>
+				{/* TODO? */}
+				<link href='//fonts.googleapis.com/css?family=Alegreya:400|Alegreya:700|Arapey:400|Vollkorn:400|Alegreya:700' rel='stylesheet' type='text/css' />
+   				<script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js"></script>
 			</Head>
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
 				<NavBar />

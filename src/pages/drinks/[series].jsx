@@ -6,11 +6,25 @@ import Image from 'next/image'
 import { useAppContext } from "../../common/contexts/AppContext";
 import DrinkSection from "../../common/components/menu/DrinkSection";
 import Layout from "../../common/layouts/Layout";
+import { useEffect } from "react";
+import Aos from "aos";
 
 export default function Home() {
 	const router = useRouter();
 	const { drinkData } = useAppContext();
 	const curSeries = router.query.series;
+
+	useEffect(() => {
+		Aos.init({
+			duration: 2000
+		});
+	}, []);
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (window._jf) window._jf.flush();
+		}, 1500)
+	}, []);
 
 	return (
 		<Layout backgroundImageUrl={"https://i.imgur.com/SDLzr35.jpg"}>

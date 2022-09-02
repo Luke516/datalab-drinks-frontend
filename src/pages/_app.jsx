@@ -3,16 +3,31 @@ import { appWithTranslation } from "next-i18next";
 import { SSRProvider } from 'react-bootstrap';
 import { AppContextProvider } from "../common/contexts/AppContext";
 import Script from "next/script";
+import TagManager from 'react-gtm-module';
+import { useEffect } from "react";
 
 import "../styles/globals.css"
-import  "../styles/main.scss";
+import "../styles/main.scss";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-MRRTLKB' });
+
+    //TODO: multiple AOS init?
+    Aos.init({
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 50
+    });
+  }, []);
+
   return <SSRProvider>
     <AppContextProvider>
       <Component {...pageProps} />
     </AppContextProvider>
-    <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"/>
+    <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" />
   </SSRProvider>
 }
 

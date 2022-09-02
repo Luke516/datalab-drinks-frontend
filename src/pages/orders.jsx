@@ -38,13 +38,16 @@ export default function Orders(props) {
             }else{
                 setOrderData([]);
             }
+            setTimeout(()=>{
+                if(window._jf) window._jf.flush();
+            }, 4500)
         });
     }, []);
 
     useEffect(()=>{
         setTimeout(()=>{
             if(window._jf) window._jf.flush();
-        }, 500)
+        }, 4500)
     }, []);
 
     return(
