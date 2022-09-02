@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import Script from 'next/script'
 import { useTranslation } from 'next-i18next';
 import Image from "next/image";
 import NavBar from "../components/nav/NavBar";
@@ -41,8 +42,9 @@ export default function Layout({
 				/>
 				{/* TODO? */}
 				<link href='//fonts.googleapis.com/css?family=Alegreya:400|Alegreya:700|Arapey:400|Vollkorn:400|Alegreya:700' rel='stylesheet' type='text/css' />
-   				<script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js"></script>
 			</Head>
+			{/* TODO */}
+			<Script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js" />
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
 				<NavBar />
 				{backgroundDiv}
