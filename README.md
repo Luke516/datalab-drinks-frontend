@@ -106,6 +106,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Architecture
 
+**¯\\_(ツ)_/¯**
+
 ## API
 
 Current API format follows previous backend project.
@@ -117,11 +119,24 @@ Current API format follows previous backend project.
 Quick update guide if any of the members needs to update some informations
 
 * Update meeting time
+  * Update ORDER_CLOSE_DAY_OF_WEEK and ORDER_CLOSE_HOUR in `src/modules/backend/utils.js`
 * Update drinks menu
+  * Update `src/modules/backend/assets/cama_menu.yaml`
 
 ## Roadmap
 
+* Robot.txt
+* Analytics
+* Autocompletion
+* History orders
+* Internalization
+* Login with Google
+* Database security
+* Typescript
+
 ## Change Log
+
+**¯\\_(ツ)_/¯**
 
 ## Acknowledgements
 
