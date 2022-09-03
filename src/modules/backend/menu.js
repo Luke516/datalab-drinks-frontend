@@ -8,18 +8,7 @@ import menu from "./assets/cama_menu.yaml";
 let menuCombined = null;
 
 export function getMenu() {
-	// Get document, or throw exception on error
-	// console.log(sugar);
-	// console.log(JSON.stringify(menu));
-	// console.log(JSON.stringify(menu.menu[0]));
 	const payload = combineMenu(menu, sugar, ice);
-	// console.log(JSON.stringify(data)); TODO
-	// try {
-	// 	const doc = yaml.load(fs.readFileSync(ice, "utf8"));
-	// 	console.log(doc);
-	// } catch (e) {
-	// 	console.log(e);
-	// }
 	return {
 		payload
 	};
@@ -54,7 +43,6 @@ function combineMenu(menu, sugar, ice) {
 	try{
 		for(let series of menu.menu) {
 			series.items = series.items.map((value, idx)=>{
-				console.log(value);
 				const { item_id, item, large_price, medium_price, sugar_adjustable, cold_adjustable, hot_adjustable } = value;
 				return {
 					item_id,
@@ -66,6 +54,9 @@ function combineMenu(menu, sugar, ice) {
 				};
 			});
 		}
+		// cache result
+		// note: shallow assign make repeat execute problem
+		// TODO: fix 
 		menuCombined = menu;
 		return menu;
 	}

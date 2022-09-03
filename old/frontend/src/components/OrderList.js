@@ -29,27 +29,29 @@ export default function OrderList(props) {
     }
 
     useEffect(() => {
-        if(!fallback){
-            getOrders().then((items) => {
-                console.log(items);
-                if(items){
-                    console.log(items.payload);
-                    setOrderData(items.payload.week_orders.sort(orderCompare) || []);
-                    setOrderSummary(items.payload.aggregate_orders || []);
-                }else{
-                    setOrderData([]);
-                }
-                setLoading(false);
-            });
-        }
-        getOrdersBackup().then((items) => {
+        // TODO if(!fallback){
+        //     getOrders().then((items) => {
+        //         console.log(items);
+        //         if(items){
+        //             console.log(items.payload);
+        //             setOrderData(items.payload.week_orders.sort(orderCompare) || []);
+        //             setOrderSummary(items.payload.aggregate_orders || []);
+        //         }else{
+        //             setOrderData([]);
+        //         }
+        //         setLoading(false);
+        //     });
+        // }
+        getOrders().then((items) => {
             console.log(items);
             if(items){
                 console.log(items.payload);
-                setBackupOrderData(items.payload.week_orders.sort(orderCompare) || []);
+                setOrderData(items.payload.week_orders.sort(orderCompare) || []);
+                setOrderSummary(items.payload.aggregate_orders || []);
             }else{
                 setOrderData([]);
             }
+            setLoading(false);
         });
     }, []);
 

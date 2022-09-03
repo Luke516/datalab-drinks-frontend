@@ -39,6 +39,10 @@ export const getStaticProps = async ({ locale }) => ({
 
 export default appWithTranslation(MyApp);
 
+
+
+
+
 // import { useEffect } from 'react';
 // import { useRouter } from 'next/router';
 // import Head from "next/head";

@@ -52,5 +52,7 @@ package-lock.json
 *.icloud
 
 */.env
+.env
+.env.local
 
 .next

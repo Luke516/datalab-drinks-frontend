@@ -34,19 +34,21 @@ export default function Orders(props) {
 			console.log(items);
 			if (items) {
 				console.log(items.payload);
-				setBackupOrderData(items.payload.week_orders.sort(orderCompare) || []);
+				setOrderData(items.payload.week_orders.sort(orderCompare) || []);
+				setOrderSummary(items.payload.aggregate_orders || []);
 			} else {
 				setOrderData([]);
 			}
+			setLoading(false);
 			setTimeout(() => {
-				if (window._jf && typeof window._jf.flush === "function" ) window._jf.flush();
+				if (window._jf && typeof window._jf.flush === "function") window._jf.flush();
 			}, 200)
 		});
 	}, []);
 
 	useEffect(() => {
 		setTimeout(() => {
-			if (window._jf && typeof window._jf.flush === "function" ) window._jf.flush();
+			if (window._jf && typeof window._jf.flush === "function") window._jf.flush();
 		}, 200)
 	}, []);
 
@@ -55,11 +57,11 @@ export default function Orders(props) {
 			<div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
 				<OrderSummary data={orderSummary} />
 				{loading && <LoadingSpinner />}
-				{fallback &&
+				{/* TODO {fallback &&
 					<div className="alert alert-secondary">
 						<span>暫不提供</span>
 					</div>
-				}
+				} */}
 
 				{/* <Tree content="Apple" type="Fruit" open canHide visible onClick={console.log}>
                     <Tree content="Contents">
@@ -68,7 +70,7 @@ export default function Orders(props) {
                 </Tree> */}
 
 				{/* TODO : css class */}
-				<div className="card p-3" style={{
+				<div className="card p-3 my-4" style={{
 					backgroundColor: "rgba(255, 255, 255, 0.8)"
 				}}>
 					<h1>清單</h1>
