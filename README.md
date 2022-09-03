@@ -42,18 +42,18 @@
     </li>
     <li><a href="#deployment">Deployment</a></li>
     <li><a href="#architecture">Architecture</a>
-        <ul>
+        <!-- <ul>
         <li><a href="#frontend">Frontend</a></li>
         <li><a href="#backend">Backend</a></li>
-      </ul>
+      </ul> -->
     </li>
     <li><a href="#api">API</a></li>
     <li><a href="#update">Update (DataLab members)</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#change-logs">Change Logs</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#change-log">Change Log</a></li>
+    <!-- <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Contact</a></li> -->
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
