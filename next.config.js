@@ -9,15 +9,6 @@ const nextConfig = {
   images: {
     domains: ["i.imgur.com"],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/drinks/all',
-        permanent: true,
-      },
-    ]
-  },
   webpack: function (config) {
     config.module.rules.push({
       test: /\.yaml$/,

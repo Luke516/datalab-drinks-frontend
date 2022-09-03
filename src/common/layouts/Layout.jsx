@@ -46,7 +46,7 @@ export default function Layout({
 			{/* TODO */}
 			<Script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js" />
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
-				<NavBar />
+				{/* <NavBar /> */}
 				{backgroundDiv}
 				<div className={styles["content"]}>
 					{children}
