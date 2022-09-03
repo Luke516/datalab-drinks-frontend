@@ -19,26 +19,24 @@ export function AppContextProvider(props) {
 
   const router = useRouter();
 
-
-  //TODO
-
   useEffect(() => {
-    // TODO
-    // getMenu()
-    //   .then(items => {
-    //     console.log(items);
-    //     console.log(items.payload);
-    //     setDrinkData(items.payload);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //     setFallback(true);
-    //   })
-    //   .finally(() => {
-    //     setTimeout(() => {
-    //       if (window._jf) window._jf.flush();
-    //     }, 500);
-    //   })
+    // TODO: better handle fallback
+    getMenu()
+      .then(items => {
+        console.log(items);
+        console.log(items.payload);
+        setDrinkData(items.payload);
+      })
+      .catch((error) => {
+        console.error(error);
+        setFallback(true);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          // TODO: move to utils
+          if (window._jf && typeof window._jf.flush === "function" ) window._jf.flush();
+        }, 500);
+      })
   }, [])
 
   const contextValue = {

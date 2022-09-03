@@ -39,14 +39,14 @@ export default function Orders(props) {
 				setOrderData([]);
 			}
 			setTimeout(() => {
-				if (window._jf) window._jf.flush();
+				if (window._jf && typeof window._jf.flush === "function" ) window._jf.flush();
 			}, 200)
 		});
 	}, []);
 
 	useEffect(() => {
 		setTimeout(() => {
-			if (window._jf) window._jf.flush();
+			if (window._jf && typeof window._jf.flush === "function" ) window._jf.flush();
 		}, 200)
 	}, []);
 

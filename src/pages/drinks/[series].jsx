@@ -22,7 +22,7 @@ export default function Home() {
 
 	useEffect(() => {
 		setTimeout(() => {
-			if (window._jf) window._jf.flush();
+			if (window._jf  && typeof window._jf.flush === "function") window._jf.flush();
 		}, 200)
 	}, []);
 
