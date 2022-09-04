@@ -44,6 +44,15 @@ export default function Layout({
 				{/* <link href='//fonts.googleapis.com/css?family=Alegreya:400|Alegreya:700|Arapey:400|Vollkorn:400|Alegreya:700' rel='stylesheet' type='text/css' /> */}
 			</Head>
 			{/* TODO */}
+			{/* <!-- Google Tag Manager --> */}
+			<Script  id="google-tag-manager" strategy="afterInteractive">
+				{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer','GTM-KFT33QG');`}
+			</Script>
+			{/* <!-- End Google Tag Manager --> */}
 			<Script src="//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-63416.js" />
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
 				<NavBar />
