@@ -13,7 +13,8 @@ import Aos from "aos";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    TagManager.initialize({ gtmId: 'GTM-MRRTLKB' });
+    //  TODO
+    TagManager.initialize({ gtmId: 'GTM-KFT33QG' });
 
     //TODO: multiple AOS init?
     Aos.init({
