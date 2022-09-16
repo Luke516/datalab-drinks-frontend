@@ -15,8 +15,12 @@ const ORDER_CLOSE_HOUR = 16; // 16:00
 
 export const getStartOfOrderCycle = () => {
     const now = dayjs().tz();
-    const d = now.weekday(ORDER_CLOSE_DAY_OF_WEEK).isBefore(now)? now.weekday(ORDER_CLOSE_DAY_OF_WEEK): now.weekday(-ORDER_CLOSE_DAY_OF_WEEK);
-    const t = d.hour(ORDER_CLOSE_HOUR).minute(0).second(0);
+    // Current Friday
+    let t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK).hour(ORDER_CLOSE_HOUR).minute(0).second(0);
+    if(t.isAfter(now)) {
+        // Previous Friday
+        t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK).hour(ORDER_CLOSE_DAY_OF_WEEK-7).minute(0).second(0);
+    }
     // console.log(now.format());
     // console.log(d.format());
     // console.log(t.format());
