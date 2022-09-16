@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useAppContext } from "../../contexts/AppContext";
+import LoadingSpinner from "../utils/LoadingSpinner";
 
 export default function OrderSummary(props) {
 	const [showModal, setShowModal] = useState(false);
