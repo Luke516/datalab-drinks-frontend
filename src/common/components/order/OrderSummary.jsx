@@ -14,8 +14,8 @@ export default function OrderSummary(props) {
 		}}>
 			<h1>統計</h1>
 			{/* TODO */}
-			{/* {loading && <LoadingSpinner />}
-            <div className="d-flex flex-column">
+			{ props.loading && <LoadingSpinner />}
+            {/* <div className="d-flex flex-column">
                 <ul className="list-group list-group-flush p-0">
                     {orderData.map((item, key) => {
                         return (<OrderCell key={key} data={item} />)

@@ -55,8 +55,7 @@ export default function Orders(props) {
 	return (
 		<Layout backgroundImageUrl={"https://i.imgur.com/SDLzr35.jpg"}>
 			<div className="container" id="order-list" data-aos="fade-in" data-aos-duration="300">
-				<OrderSummary data={orderSummary} />
-				{loading && <LoadingSpinner />}
+				<OrderSummary data={orderSummary} loading={loading}/>
 				{/* TODO {fallback &&
 					<div className="alert alert-secondary">
 						<span>暫不提供</span>
