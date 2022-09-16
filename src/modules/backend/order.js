@@ -49,6 +49,9 @@ export function getOrderSummaryFromOrderList(orderList) {
 export async function getOrderList() {
 	// const startTimestamp = Timestamp.fromDate(new Date());
 	const startTimestamp = new Timestamp(getStartOfOrderCycle());
+	console.log("startTimestamp"); //TODO
+	console.log(startTimestamp);
+
 	const q = query(collection(db, "orders"), where("timestamp", ">", startTimestamp));
 	const querySnapshot = await getDocs(q);
 
@@ -56,6 +59,7 @@ export async function getOrderList() {
 	querySnapshot.forEach((doc) => {
 		// doc.data() is never undefined for query doc snapshots
 		const order = doc.data();
+		console.log(order); //TODO
 		orders.push({
 			...order,
 			timestamp: order.timestamp.seconds 
