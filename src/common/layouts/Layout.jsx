@@ -7,6 +7,7 @@ import NavBar from "../components/nav/NavBar";
 import Footer from "../components/nav/Footer";
 
 import styles from "./Layout.module.css";
+import { Alert } from 'react-bootstrap';
 
 export default function Layout({
 	children,
@@ -60,6 +61,9 @@ export default function Layout({
 			{/* <!-- End Google Tag Manager (noscript) --> */}
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
 				<NavBar />
+				<Alert>
+					網頁更新中，如有異常請稍候再試 QWQ
+				</Alert>
 				{backgroundDiv}
 				<div className={styles["content"]}>
 					{children}

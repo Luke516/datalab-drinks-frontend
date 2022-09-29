@@ -58,3 +58,5 @@ package-lock.json
 .next
 
 old/
+
+secret/

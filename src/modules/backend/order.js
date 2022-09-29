@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { getFirestore, collection, addDoc, doc, setDoc, getDocs, Timestamp, query, where } from "firebase/firestore";
+import { Timestamp } from "firebase-admin/firestore";
 import { getStartOfOrderCycle } from "./utils";
 
 import ice from "./assets/ice.yaml";
@@ -10,11 +10,12 @@ import menu from "./assets/cama_menu.yaml";
 // TODO: error handling
 // TODO: handle duplicate and timeout
 export async function submitOrder(data) {
+	const orderer = data.order_by
 	try {
-		const docRef = await setDoc(doc(db, "orders", data.order_by), {
+		await db.collection("orders").doc(orderer).set({
 			...data,
 			timestamp: Timestamp.fromDate(new Date()),
-		});
+		})
 	} catch (e) {
 		console.error("Error adding document: ", e);
 	}
@@ -47,24 +48,18 @@ export function getOrderSummaryFromOrderList(orderList) {
 }
 
 export async function getOrderList() {
-	// const startTimestamp = Timestamp.fromDate(new Date());
-	const startTimestamp = new Timestamp(getStartOfOrderCycle());
-	console.log("startTimestamp"); //TODO
-	console.log(startTimestamp);
-
-	const q = query(collection(db, "orders"), where("timestamp", ">", startTimestamp));
-	const querySnapshot = await getDocs(q);
+	const startTimestamp = new Timestamp(getStartOfOrderCycle(), 0);
+	console.log("startTimestamp: ", startTimestamp); //TODO: debug
 
 	let orders = [];
-	querySnapshot.forEach((doc) => {
-		// doc.data() is never undefined for query doc snapshots
+	const docs = await db.collection("orders").where("timestamp", ">", startTimestamp).get()
+	docs.forEach(doc => {
 		const order = doc.data();
-		console.log(order); //TODO
 		orders.push({
 			...order,
 			timestamp: order.timestamp.seconds 
 		});
-	});
+	})
 	return preloadOrders(orders);
 }
 

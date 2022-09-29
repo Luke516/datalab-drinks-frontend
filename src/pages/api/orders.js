@@ -1,6 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import { getOrdersRemote, submitOrderRemote } from "../../modules/api/drinkMenu"
 import { getOrderList, getOrderSummaryFromOrderList, submitOrder } from "../../modules/backend/order";
 
 
@@ -11,15 +9,10 @@ export default async function handler(req, res) {
         }
         else {
             const orderData = req.body;
-            const orderResponse = await submitOrderRemote(orderData);
             await submitOrder(orderData);
-            res.status(200).json(orderResponse);
+            res.status(200).send()
         }
     } else if (req.method === 'GET') {
-        // Handle any other HTTP method
-
-        // TODO
-        // const orders = await getOrdersRemote();
         const weekOrders = await getOrderList();
         const aggregated = getOrderSummaryFromOrderList(weekOrders); //TODO: naming
         const payload = {
