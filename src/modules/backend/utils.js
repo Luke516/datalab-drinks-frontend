@@ -21,7 +21,7 @@ export const getStartOfOrderCycle = () => {
 
     if(t.isAfter(now)) {
         // Previous Friday
-        t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK).hour(ORDER_CLOSE_DAY_OF_WEEK-7).minute(0).second(0);
+        t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK-7).hour(ORDER_CLOSE_HOUR).minute(0).second(0);
         console.log(t.format());
     }
     // console.log(now.format());
