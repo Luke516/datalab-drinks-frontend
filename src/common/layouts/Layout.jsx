@@ -61,9 +61,9 @@ export default function Layout({
 			{/* <!-- End Google Tag Manager (noscript) --> */}
 			<div className={styles["app-layout"] + " d-flex flex-column"}>
 				<NavBar />
-				<Alert>
+				{/* <Alert>
 					網頁更新中，如有異常請稍候再試 QWQ
-				</Alert>
+				</Alert> */}
 				{backgroundDiv}
 				<div className={styles["content"]}>
 					{children}
