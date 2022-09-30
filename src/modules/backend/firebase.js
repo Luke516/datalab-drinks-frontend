@@ -1,11 +1,11 @@
 import { initializeApp, cert, getApps } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-import serviceAccount from "../../secret/datalab-drinks-firebase-adminsdk-q89l4-bba41cec46.json";
+const config = JSON.parse(process.env.FIREBASE_CONFIG)
 
 if (getApps().length === 0) {
 	initializeApp({
-		credential: cert(serviceAccount)
+		credential: cert(config)
 	})
 }
 
@@ -19,6 +19,8 @@ if (getApps().length === 0) {
 // 	appId: "1:665503726248:web:d8d9f23e2faca94195609d",
 // 	measurementId: "G-FYSQY82636"
 // };
+
+//TODO: analytics?
 
 // // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
