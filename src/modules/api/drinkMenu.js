@@ -96,3 +96,11 @@ export function submitOrderRemote(order) {
     console.log(error);
   })
 }
+
+export function getCustomers() {
+  const url = serverBaseURL + "/customers/";
+  return fetch(url)
+    .then((data) => {
+      return data.json();
+    })
+}

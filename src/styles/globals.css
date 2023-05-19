@@ -27,7 +27,7 @@ a {
 
 body { 
   font-family: "jf-jinxuanlatte" !important;
-  caret-color: transparent;
+  /* caret-color: transparent; */
   font-size: 1.1rem !important;
 }
 

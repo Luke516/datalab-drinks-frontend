@@ -1,10 +1,11 @@
 
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Hint } from 'react-autocomplete-hint';
-import { serverBaseURL, submitOrder, submitOrderBackUp } from "../../../modules/api/drinkMenu";
+import { getCustomers, serverBaseURL, submitOrder, submitOrderBackUp } from "../../../modules/api/drinkMenu";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import { useAppContext } from "../../contexts/AppContext";
+import { useMemo } from "react";
 
 export default function OrderSubmitForm(props) {
     const[submitting, setSubmitting] = useState(false);
@@ -13,7 +14,7 @@ export default function OrderSubmitForm(props) {
     const[ice, setIce] = useState("");
     const nameInput = useRef(null);
 
-    const { fallback, showSuccessModal, setShowSuccessModal} = useAppContext();
+    const { fallback, showSuccessModal, setShowSuccessModal, customers} = useAppContext();
 
     useEffect(()=>{
         let username = localStorage.getItem('name') || "";
@@ -46,9 +47,6 @@ export default function OrderSubmitForm(props) {
             }
         });
     }
-    
-    const members = ["老師", "吳義路", "林玉山", "王亨傑","徐偉倫","袁嘉宏","韓宜庭","張育榮","王平郁","何星緯","孫浩倫","蘇瑞揚","林雨萱","羅昱喬","許尊霖","徐郁閎","詹其侁","蔡怡君",
-                    "義路", "玉山", "亨傑","偉倫","嘉宏","宜庭","育榮","平郁","星緯","浩倫","瑞揚","雨萱","昱喬","尊霖","郁閎","其侁","怡君"];
 
     return(
         <div className="collapse" id={props.data.item}>
@@ -83,7 +81,7 @@ export default function OrderSubmitForm(props) {
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
                             <span>訂購人</span>
                             <div className="select-name ms-2 flex-grow-1">
-                                <Hint options={members}>
+                                <Hint options={customers}>
                                     <input ref={nameInput} type="text" className="mt-2 form-control" placeholder="你的名字" aria-label="Username" aria-describedby="basic-addon1" />
                                 </Hint>
                             </div>

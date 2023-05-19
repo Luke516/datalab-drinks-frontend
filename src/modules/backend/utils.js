@@ -17,12 +17,12 @@ export const getStartOfOrderCycle = () => {
     const now = dayjs().tz();
     // Current Friday
     let t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK).hour(ORDER_CLOSE_HOUR).minute(0).second(0);
-    console.log(t.format());
+    // console.log(t.format());
 
     if(t.isAfter(now)) {
         // Previous Friday
         t = now.weekday(ORDER_CLOSE_DAY_OF_WEEK-7).hour(ORDER_CLOSE_HOUR).minute(0).second(0);
-        console.log(t.format());
+        // console.log(t.format());
     }
     // console.log(now.format());
     // console.log(d.format());
