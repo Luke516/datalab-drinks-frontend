@@ -30,6 +30,14 @@ export default function OrderSubmitForm(props) {
             alert("請寫名字 QWQ!");
             return;
         }
+        if(ice === "" || ice === null || ice === undefined) {
+            alert("請選擇糖/冰 QWQ!");
+            return;
+        }
+        if(sugar === "" || sugar === null || sugar === undefined) {
+            alert("請選擇糖/冰 QWQ!");
+            return;
+        }
         localStorage.setItem('name', name);
         (fallback ? submitOrder :submitOrder)({
             name,
