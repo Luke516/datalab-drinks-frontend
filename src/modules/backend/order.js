@@ -68,8 +68,8 @@ export async function getOrderList() {
 const preloadOrders = (orders) => {
 	return orders.map((order) => {
 		const { item_id, ice_id, sugar_id } = order;
-		const ice_tag = ice.ices[ice_id - 1].ice_tag;
-		const sugar_tag = sugar.sugars[sugar_id - 1].sugar_tag;
+		const ice_tag = ice.ices[ice_id - 1]?.ice_tag || ice.ices[ice.ices.length - 1]?.ice_tag;
+		const sugar_tag = sugar.sugars[sugar_id - 1]?.sugar_tag || sugar.sugars[sugar.sugars.length - 1]?.sugar_tag;
 		let item = "undefined";
 		//TODO: better algo
 		for(let series of menu.menu) {
