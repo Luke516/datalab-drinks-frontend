@@ -64,7 +64,7 @@ export default function OrderSubmitForm(props) {
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">
                             <span className="">大小</span>
                             <div className="select-size ms-2 flex-grow-1">
-                                <SingleOptionButtonGroup id={props.data.item} title="size" options={props.data.large_price === 0? ["中"]: props.data.medium_price === 0? ["大"]: ["中", "大"] } values={props.data.large_price === 0? ["medium"]: props.data.medium_price === 0? ["large"]: ["medium", "large"] } onChange={setSize} />
+                                <SingleOptionButtonGroup id={props.data.item} title="size" options={props.data.large_price <= 0? ["中"]: props.data.medium_price <= 0? ["大"]: ["中", "大"] } values={props.data.large_price <= 0? ["medium"]: props.data.medium_price <= 0? ["large"]: ["medium", "large"] } onChange={setSize} />
                             </div>
                         </div>
                         <div className="my-2 col-lg-6 d-flex flex-row align-items-center">

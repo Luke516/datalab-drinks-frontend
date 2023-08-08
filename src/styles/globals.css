@@ -19,13 +19,14 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
   }
 }
 
-body { 
+body {
   font-family: "jf-jinxuanlatte" !important;
   /* caret-color: transparent; */
   font-size: 1.1rem !important;
@@ -33,4 +34,11 @@ body {
 
 span {
   font-size: 1.1rem;
+}
+
+.drink-price {
+  width: 108px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }

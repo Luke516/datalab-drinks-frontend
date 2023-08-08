@@ -270,14 +270,14 @@ menu:
   - series: "人氣特調"
     items:
       - item_id: 38
-        item: "單品茶 | 高山錫蘭茶"
+        item: "單品茶 - 高山錫蘭茶"
         large_price: 35
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 39
-        item: "單品茶 | 清焙烏龍茶"
+        item: "單品茶 - 清焙烏龍茶"
         large_price: 35
         medium_price:
         sugar_adjustable: true
@@ -298,42 +298,42 @@ menu:
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 42
-        item: "鮮奶茶 | 高山錫蘭茶"
+        item: "鮮奶茶 - 高山錫蘭茶"
         large_price: 55
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 43
-        item: "鮮奶茶 | 清焙烏龍茶"
+        item: "鮮奶茶 - 清焙烏龍茶"
         large_price: 55
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 44
-        item: "特調奶茶 | 高山錫蘭"
+        item: "特調奶茶 - 高山錫蘭"
         large_price: 50
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 45
-        item: "特調奶茶 | 清焙烏龍茶"
+        item: "特調奶茶 - 清焙烏龍茶"
         large_price: 50
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - item_id: 46
-        item: "浮雲奶蓋 | 高山錫蘭"
+        item: "浮雲奶蓋 - 高山錫蘭"
         large_price: 50
         medium_price: -1
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: false
       - item_id: 47
-        item: "浮雲奶蓋 | 清焙烏龍"
+        item: "浮雲奶蓋 - 清焙烏龍"
         large_price: 50
         medium_price: -1
         sugar_adjustable: true
