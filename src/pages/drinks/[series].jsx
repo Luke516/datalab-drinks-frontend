@@ -47,6 +47,7 @@ export default function Home() {
 }
 
 export async function getStaticPaths() {
+
 	return {
 		// TODO: iterate possible combinations
 		paths: [
@@ -60,6 +61,18 @@ export async function getStaticPaths() {
 				params: { series: "1" },
 			},
 			{
+				params: { series: "2" },
+			},
+			{
+				params: { series: "3" },
+			},
+			{
+				params: { series: "4" },
+			},
+			{
+				params: { series: "5" },
+			},
+			{
 				params: { series: "all" },
 				locale: "zh",
 			},
@@ -69,6 +82,22 @@ export async function getStaticPaths() {
 			},
 			{
 				params: { series: "1" },
+				locale: "zh",
+			},
+			{
+				params: { series: "2" },
+				locale: "zh",
+			},
+			{
+				params: { series: "3" },
+				locale: "zh",
+			},
+			{
+				params: { series: "4" },
+				locale: "zh",
+			},
+			{
+				params: { series: "5" },
 				locale: "zh",
 			},
 
@@ -82,6 +111,22 @@ export async function getStaticPaths() {
 			},
 			{
 				params: { series: "1" },
+				locale: "en",
+			},
+			{
+				params: { series: "2" },
+				locale: "en",
+			},
+			{
+				params: { series: "3" },
+				locale: "en",
+			},
+			{
+				params: { series: "4" },
+				locale: "en",
+			},
+			{
+				params: { series: "5" },
 				locale: "en",
 			},
 		],
