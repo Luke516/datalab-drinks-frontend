@@ -1,9 +1,6 @@
-import fs from "fs";
-import yaml from "js-yaml";
-
-import ice from "./assets/ice.yaml";
-import sugar from "./assets/sugar.yaml";
-import menu from "./assets/cama_menu.yaml";
+import ice from "@/assets/ice.yaml"
+import sugar from "@/assets/sugar.yaml";
+import menu from "@/assets/cama_menu.yaml";
 
 let menuCombined = null;
 

@@ -1,6 +1,6 @@
 // TODO: remove unused heroku codes
 
-import { menu } from "./drinkMenuBackup";
+import { menu } from "../data/drinkMenuBackup";
 
 // export const serverBaseURL = "http://localhost:5000/v1";
 // export const serverBaseURL = "http://3.37.201.24:5002/v2";

@@ -121,7 +121,7 @@ Quick update guide if any of the members needs to update some informations
 * Update meeting time
   * Update ORDER_CLOSE_DAY_OF_WEEK and ORDER_CLOSE_HOUR in `src/modules/backend/utils.js`
 * Update drinks menu
-  * Update `src/modules/backend/assets/cama_menu.yaml`
+  * Update `src/assets/cama_menu.yaml`
 
 ## Roadmap
 

@@ -8,6 +8,7 @@ import DrinkSection from "../../common/components/menu/DrinkSection";
 import Layout from "../../common/layouts/Layout";
 import { useEffect } from "react";
 import Aos from "aos";
+import { getMenu } from "@/modules/data/menu";
 
 export default function Home() {
 	const router = useRouter();
@@ -22,7 +23,7 @@ export default function Home() {
 
 	useEffect(() => {
 		setTimeout(() => {
-			if (window._jf  && typeof window._jf.flush === "function") window._jf.flush();
+			if (window._jf && typeof window._jf.flush === "function") window._jf.flush();
 		}, 200)
 	}, []);
 
@@ -47,89 +48,34 @@ export default function Home() {
 }
 
 export async function getStaticPaths() {
+	const menu = getMenu().payload.menu;
+
+	let paths = [{
+		params: { series: "all" },
+	}, {
+		params: { series: "all" },
+		locale: "zh",
+	}, {
+		params: { series: "all" },
+		locale: "en",
+	},];
+
+	for (let i = 0; i < menu.length; i++) {
+		paths.push({
+			params: { series: `${i}` },
+		});
+		paths.push({
+			params: { series: `${i}` },
+			locale: "zh",
+		});
+		paths.push({
+			params: { series: `${i}` },
+			locale: "en",
+		});
+	}
 
 	return {
-		// TODO: iterate possible combinations
-		paths: [
-			{
-				params: { series: "all" },
-			},
-			{
-				params: { series: "0" },
-			},
-			{
-				params: { series: "1" },
-			},
-			{
-				params: { series: "2" },
-			},
-			{
-				params: { series: "3" },
-			},
-			{
-				params: { series: "4" },
-			},
-			{
-				params: { series: "5" },
-			},
-			{
-				params: { series: "all" },
-				locale: "zh",
-			},
-			{
-				params: { series: "0" },
-				locale: "zh",
-			},
-			{
-				params: { series: "1" },
-				locale: "zh",
-			},
-			{
-				params: { series: "2" },
-				locale: "zh",
-			},
-			{
-				params: { series: "3" },
-				locale: "zh",
-			},
-			{
-				params: { series: "4" },
-				locale: "zh",
-			},
-			{
-				params: { series: "5" },
-				locale: "zh",
-			},
-
-			{
-				params: { series: "all" },
-				locale: "en",
-			},
-			{
-				params: { series: "0" },
-				locale: "en",
-			},
-			{
-				params: { series: "1" },
-				locale: "en",
-			},
-			{
-				params: { series: "2" },
-				locale: "en",
-			},
-			{
-				params: { series: "3" },
-				locale: "en",
-			},
-			{
-				params: { series: "4" },
-				locale: "en",
-			},
-			{
-				params: { series: "5" },
-				locale: "en",
-			},
-		],
+		paths: paths,
 		fallback: false,
 	}
 }

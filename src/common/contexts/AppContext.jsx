@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import { menu } from "../../modules/api/drinkMenuBackup";
-import { getCustomers, getMenu } from "../../modules/api/drinkMenu";
+import { getCustomers, getMenu } from "../../modules/fetch/drinkMenu";
+import { getMenu as getMenuFromAsset } from "@/modules/data/menu";
 
 export const AppContext = createContext();
 
@@ -9,7 +9,7 @@ const dummyCustomers = ["老師", "吳義路", "林玉山", "王亨傑","徐偉�
 "義路", "玉山", "亨傑","偉倫","嘉宏","宜庭","育榮","平郁","星緯","浩倫","瑞揚","雨萱","昱喬","尊霖","郁閎","其侁","怡君"];
 
 export function AppContextProvider(props) {
-  // const menu = menu; //TODO
+  const menu = getMenuFromAsset().payload;
   const [drinkData, setDrinkData] = useState(menu);
   const [customers, setCustomers] = useState(dummyCustomers);
   const [fallback, setFallback] = useState(false);

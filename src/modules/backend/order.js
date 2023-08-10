@@ -2,9 +2,9 @@ import { db } from "./firebase";
 import { Timestamp } from "firebase-admin/firestore";
 import { getStartOfOrderCycle } from "./utils";
 
-import ice from "./assets/ice.yaml";
-import sugar from "./assets/sugar.yaml";
-import menu from "./assets/cama_menu.yaml";
+import ice from "@/assets/ice.yaml"
+import sugar from "@/assets/sugar.yaml";
+import menu from "@/assets/cama_menu.yaml";
 
 
 // TODO: error handling

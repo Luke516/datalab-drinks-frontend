@@ -1,7 +1,7 @@
 
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Hint } from 'react-autocomplete-hint';
-import { getCustomers, serverBaseURL, submitOrder, submitOrderBackUp } from "../../../modules/api/drinkMenu";
+import { getCustomers, serverBaseURL, submitOrder, submitOrderBackUp } from "../../../modules/fetch/drinkMenu";
 import SingleOptionButtonGroup from "./SingleOptionButtonGroup";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import { useAppContext } from "../../contexts/AppContext";

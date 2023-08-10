@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import OrderCell from "../common/components/order/OrderCell";
 import OrderSummary from "../common/components/order/OrderSummary";
-import { getOrders, getOrdersBackup } from "../modules/api/drinkMenu";
+import { getOrders, getOrdersBackup } from "../modules/fetch/drinkMenu";
 import LoadingSpinner from "../common/components/utils/LoadingSpinner";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useAppContext } from "../common/contexts/AppContext";
